@@ -1,4 +1,5 @@
 using Arkanoid.Interfaces;
+using Arkanoid.Models;
 using Zenject;
 
 namespace Arkanoid.UI.Presenter
@@ -7,16 +8,19 @@ namespace Arkanoid.UI.Presenter
     {
 		#region FIELDS
 		[Inject] private MenuPresenter menuPresenter;
+
 		private ISettingsView settingsView;
+		private GameSettingsModel gameSettingsModel;
 		#endregion
 
-		public SettingsPresenter(ISettingsView view)
+		public SettingsPresenter(ISettingsView view, GameSettingsModel gameSettings)
 		{
 			settingsView = view;
+			gameSettingsModel = gameSettings;
 
 			settingsView.OnBackButtonClicked += BackToMenu;
 			settingsView.OnResolutionScaleChanged += ChangeResolutionScale;
-			settingsView.OnSoundVolumeChanged += ChangeSoundVolume;
+			settingsView.OnSFXVolumeChanged += ChangeSFXVolume;
 			settingsView.OnMusicVolumeChanged += ChangeMusicVolume;
 		}
 
@@ -30,7 +34,7 @@ namespace Arkanoid.UI.Presenter
 
 		}
 
-		private void ChangeSoundVolume(bool isTurnOn)
+		private void ChangeSFXVolume(bool isTurnOn)
 		{
 
 		}

@@ -27,9 +27,9 @@ namespace Arkanoid.UI.View
 		public event UnityAction OnPlayButtonClicked;
 		public event UnityAction OnSettingsButtonClicked;
 		public event UnityAction OnQuitButtonClicked;
-		#endregion
+        #endregion
 
-		private void OnEnable()
+        private void OnEnable()
 		{
 			playButton?.onClick.AddListener(OnPlayClicked);
 			settingsButton?.onClick.AddListener(OnSettingsClicked);

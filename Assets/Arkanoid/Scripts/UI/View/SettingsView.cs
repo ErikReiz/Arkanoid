@@ -23,7 +23,7 @@ namespace Arkanoid.UI.View
 		#region FIELDS
 		public event UnityAction OnBackButtonClicked;
 		public event UnityAction<float> OnResolutionScaleChanged;
-		public event UnityAction<bool> OnSoundVolumeChanged;
+		public event UnityAction<bool> OnSFXVolumeChanged;
 		public event UnityAction<bool> OnMusicVolumeChanged;
 		#endregion
 
