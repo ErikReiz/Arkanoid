@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3d641b518b492346a273e81a052e3ad
+guid: 3df68ad4d10504b4fab6f5cf745afea1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ic1
+      name: Button_1
       rect:
         serializedVersion: 2
-        x: 191
-        y: 4106
-        width: 1600
-        height: 1630
+        x: 135
+        y: 416
+        width: 435
+        height: 435
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,29 +131,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bad6bfb42e23d3f4e8d74127c912f0cd
-      internalID: 1820171815
+      spriteID: 87e6fc9fc33131742b862abcf463db45
+      internalID: 792963681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: F
+      name: Button_2
       rect:
         serializedVersion: 2
-        x: 2181
-        y: 4082
-        width: 1600
-        height: 1600
+        x: 607
+        y: 416
+        width: 435
+        height: 435
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddb8e1b11d753c445b2534cfa681debe
-      internalID: -384518861
+      spriteID: 1d65b4d0ad5c9ea4881abc65dfa3395f
+      internalID: 1403464074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_3
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 416
+        width: 435
+        height: 435
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af428575ff69e2f4fa65d229f47cebed
+      internalID: 526670401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayIcon
+      rect:
+        serializedVersion: 2
+        x: 3154
+        y: 64
+        width: 217
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3404a4836c28e6f4d85649b17c5609d0
+      internalID: -831336217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SettingsIcon
+      rect:
+        serializedVersion: 2
+        x: 4144
+        y: 67
+        width: 217
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8592d05ea432664797985e528180ff1
+      internalID: -1401769852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrossIcon
+      rect:
+        serializedVersion: 2
+        x: 3657
+        y: 68
+        width: 217
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23bb806cc2c07e54488a7796a624aa27
+      internalID: 85392776
       vertices: []
       indices: 
       edges: []
@@ -169,8 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      F: -384518861
-      ic1: 1820171815
+      Button_1: 792963681
+      PlayIcon: -831336217
+      SettingsIcon: -1401769852
+      Button_3: 526670401
+      Button_2: 1403464074
+      CrossIcon: 85392776
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

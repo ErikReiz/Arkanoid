@@ -13,7 +13,10 @@ namespace Arkanoid.UI.View
 		[SerializeField] private Canvas canvas;
 
 		[Header("Buttons")]
+		[SerializeField] private Button applyButton;
 		[SerializeField] private Button backButton;
+		[SerializeField] private Toggle sfxToggle;
+		[SerializeField] private Toggle musicToggle;
 
 		[Header("DotWeen")]
 		[SerializeField] private float tweeningLength = 0.3f;
@@ -30,12 +33,24 @@ namespace Arkanoid.UI.View
 
         private void OnEnable()
 		{
+			applyButton.onClick.AddListener(OnApplyClicked);
 			backButton.onClick.AddListener(OnBackClicked);
+			sfxToggle.onValueChanged.AddListener(OnSFXToggled);
+			musicToggle.onValueChanged.AddListener(OnMusicToggled);
 		}
 
 		private void OnDisable()
 		{
+			applyButton.onClick.RemoveListener(OnApplyClicked);
 			backButton.onClick.RemoveListener(OnBackClicked);
+			sfxToggle.onValueChanged.RemoveListener(OnSFXToggled);
+			musicToggle.onValueChanged.RemoveListener(OnMusicToggled);
+		}
+
+		private void OnApplyClicked()
+		{
+			applyButton.transform.DOShakeScale(tweeningLength);
+			OnApplyButtonClicked.Invoke();
 		}
 
 		private async void OnBackClicked()
@@ -43,6 +58,16 @@ namespace Arkanoid.UI.View
 			await Hide();
 			canvas.gameObject.SetActive(false);
 			OnBackButtonClicked.Invoke();
+		}
+
+		private void OnSFXToggled(bool isOn)
+		{
+			OnSFXVolumeChanged.Invoke(isOn);
+		}
+
+		private void OnMusicToggled(bool isOn)
+		{
+			OnMusicVolumeChanged.Invoke(isOn);
 		}
 
 		public Task Show()

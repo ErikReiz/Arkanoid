@@ -31,6 +31,8 @@ namespace Arkanoid.Models
 		public void ApplySettings()
 		{
 			QualitySettings.resolutionScalingFixedDPIFactor = settingsPresset.ResolutionScale;
+			audioMixer.GetFloat(sfxGroup, out float val);
+			Debug.Log(val);
 			audioMixer.SetFloat(sfxGroup, settingsPresset.SFXVolume);
 			audioMixer.SetFloat(musicGroup, settingsPresset.MusicVolume);
 		}
@@ -40,14 +42,14 @@ namespace Arkanoid.Models
 			settingsPresset.ResolutionScale = scale;
 		}
 
-		public void ChangeSFXVolume(bool isTurnedOn)
+		public void ChangeSFXVolume(bool isOn)
 		{
-			settingsPresset.SFXVolume = isTurnedOn ? 0 : -80;
+			settingsPresset.SFXVolume = isOn ? 0 : -80;
 		}
 
-		public void ChangeMusicVolume(bool isTurnedOn)
+		public void ChangeMusicVolume(bool isOn)
 		{
-			settingsPresset.MusicVolume = isTurnedOn ? 0 : -80;
+			settingsPresset.MusicVolume = isOn ? 0 : -80;
 		}
 
 	}

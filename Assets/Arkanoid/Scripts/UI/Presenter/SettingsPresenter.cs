@@ -43,14 +43,14 @@ namespace Arkanoid.UI.Presenter
 			gameSettingsModel.ChangeResolutionScale(scale);
 		}
 
-		private void ChangeSFXVolume(bool isTurnOn)
+		private void ChangeSFXVolume(bool isOn)
 		{
-			gameSettingsModel.ChangeSFXVolume(isTurnOn);
+			gameSettingsModel.ChangeSFXVolume(isOn);
 		}
 
-		private void ChangeMusicVolume(bool isTurnOn)
+		private void ChangeMusicVolume(bool isOn)
 		{
-			gameSettingsModel.ChangeMusicVolume(isTurnOn);
+			gameSettingsModel.ChangeMusicVolume(isOn);
 		}
 
 		public override void Run()
