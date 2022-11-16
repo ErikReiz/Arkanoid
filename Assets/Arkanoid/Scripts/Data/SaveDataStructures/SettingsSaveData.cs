@@ -7,12 +7,12 @@ namespace Arkanoid.Data
     [System.Serializable]
     public struct SettingsSaveData
     {
-        private bool isSFXTurnedOn;
-        private bool isMusicTurnedOn;
+        private float sfxVolume;
+        private float musicVolume;
         private float resolutionScale;
 
-        public bool IsSFXTurnedOn { get { return isSFXTurnedOn; } set { isSFXTurnedOn = value; } }
-        public bool IsMusicTurnedOn { get { return isMusicTurnedOn; } set { isMusicTurnedOn = value; } }
+        public float SFXVolume { get { return sfxVolume; } set { sfxVolume = value; } }
+        public float MusicVolume { get { return musicVolume; } set { musicVolume = value; } }
 
         public float ResolutionScale
         { 

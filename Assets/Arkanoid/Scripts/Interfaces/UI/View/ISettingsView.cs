@@ -6,6 +6,7 @@ namespace Arkanoid.Interfaces
     {
 		#region EVENTS
 		public event UnityAction OnBackButtonClicked;
+		public event UnityAction OnApplyButtonClicked;
 		public event UnityAction<float> OnResolutionScaleChanged;
         public event UnityAction<bool> OnSFXVolumeChanged;
         public event UnityAction<bool> OnMusicVolumeChanged;

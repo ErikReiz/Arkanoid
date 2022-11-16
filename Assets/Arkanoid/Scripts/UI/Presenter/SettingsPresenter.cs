@@ -11,14 +11,17 @@ namespace Arkanoid.UI.Presenter
 
 		private ISettingsView settingsView;
 		private GameSettingsModel gameSettingsModel;
+		private SaveDataModel saveDataModel;
 		#endregion
 
-		public SettingsPresenter(ISettingsView view, GameSettingsModel gameSettings)
+		public SettingsPresenter(ISettingsView view, GameSettingsModel gameSettingsModel, SaveDataModel saveDataModel)
 		{
 			settingsView = view;
-			gameSettingsModel = gameSettings;
+			this.gameSettingsModel = gameSettingsModel;
+			this.saveDataModel = saveDataModel;
 
 			settingsView.OnBackButtonClicked += BackToMenu;
+			settingsView.OnApplyButtonClicked += ApplySettings;
 			settingsView.OnResolutionScaleChanged += ChangeResolutionScale;
 			settingsView.OnSFXVolumeChanged += ChangeSFXVolume;
 			settingsView.OnMusicVolumeChanged += ChangeMusicVolume;
@@ -29,19 +32,25 @@ namespace Arkanoid.UI.Presenter
 			menuPresenter.Run();
 		}
 
+		private void ApplySettings()
+        {
+			gameSettingsModel.ApplySettings();
+			saveDataModel.SaveData(gameSettingsModel.Settings);
+        }
+
 		private void ChangeResolutionScale(float scale)
 		{
-
+			gameSettingsModel.ChangeResolutionScale(scale);
 		}
 
 		private void ChangeSFXVolume(bool isTurnOn)
 		{
-
+			gameSettingsModel.ChangeSFXVolume(isTurnOn);
 		}
 
 		private void ChangeMusicVolume(bool isTurnOn)
 		{
-
+			gameSettingsModel.ChangeMusicVolume(isTurnOn);
 		}
 
 		public override void Run()

@@ -1,3 +1,4 @@
+using Arkanoid.Interfaces;
 using Arkanoid.Models;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -15,9 +16,11 @@ namespace Arkanoid.Installers
         {
             #region MODELS
             Container.Bind<GameSettingsModel>().ToSelf().AsSingle();
+            Container.Bind<SaveDataModel>().ToSelf().AsSingle();
             #endregion
 
             #region OTHER
+            Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
             Container.Bind<AudioMixer>().FromInstance(audioMixer).AsSingle();
             #endregion
         }
