@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Arkanoid.Managers
 {
+	public class GameManager : MonoBehaviour
+	{
+
+	}
 
 }

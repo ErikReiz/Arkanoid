@@ -6,7 +6,9 @@ namespace Arkanoid.UI.Presenter
 	public class MenuPresenter : BasePresenter
 	{
 		#region FIELDS
-		[Inject]private SettingsPresenter settingsPresenter;
+		[Inject] private SettingsPresenter settingsPresenter;
+		[Inject] private ScenesMenuPresenter scenesMenuPresenter;
+
 		private IMenuView menuView;
 		#endregion
 
@@ -21,7 +23,7 @@ namespace Arkanoid.UI.Presenter
 
 		public void Play()
 		{
-			
+			scenesMenuPresenter.Run();
 		}
 
 		public void OpenSettings()

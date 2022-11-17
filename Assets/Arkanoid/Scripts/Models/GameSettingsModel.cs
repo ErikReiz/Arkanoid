@@ -31,14 +31,13 @@ namespace Arkanoid.Models
 		public void ApplySettings()
 		{
 			QualitySettings.resolutionScalingFixedDPIFactor = settingsPresset.ResolutionScale;
-			audioMixer.GetFloat(sfxGroup, out float val);
-			Debug.Log(val);
 			audioMixer.SetFloat(sfxGroup, settingsPresset.SFXVolume);
 			audioMixer.SetFloat(musicGroup, settingsPresset.MusicVolume);
 		}
 
 		public void ChangeResolutionScale(float scale)
 		{
+			Debug.Log(scale);
 			settingsPresset.ResolutionScale = scale;
 		}
 

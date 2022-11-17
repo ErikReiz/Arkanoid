@@ -55,6 +55,7 @@ namespace Arkanoid.UI.Presenter
 
 		public override void Run()
 		{
+			settingsView.UpdateSettings(ref gameSettingsModel.Settings);
 			settingsView.Show();
 		}
     }

@@ -1,3 +1,4 @@
+using Arkanoid.Data;
 using UnityEngine.Events;
 
 namespace Arkanoid.Interfaces
@@ -10,6 +11,10 @@ namespace Arkanoid.Interfaces
 		public event UnityAction<float> OnResolutionScaleChanged;
         public event UnityAction<bool> OnSFXVolumeChanged;
         public event UnityAction<bool> OnMusicVolumeChanged;
+		#endregion
+
+		#region METHODS
+		public void UpdateSettings(ref SettingsSaveData settingsSaveData);
 		#endregion
 	}
 }

@@ -1,3 +1,4 @@
+using Arkanoid.Data;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Arkanoid.Installers
     public class ModelsInstaller : MonoInstaller
     {
         #region SERIALIZABLE FIELDS
+        [SerializeField] private ScenesData levelsData;
         [SerializeField] private AudioMixer audioMixer;
         #endregion
 
@@ -17,10 +19,14 @@ namespace Arkanoid.Installers
             #region MODELS
             Container.Bind<GameSettingsModel>().ToSelf().AsSingle();
             Container.Bind<SaveDataModel>().ToSelf().AsSingle();
+			Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
             #endregion
 
-            #region OTHER
-            Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
+            #region DATA
+            Container.Bind<ScenesData>().FromScriptableObject(levelsData).AsSingle();
+			#endregion
+
+			#region OTHER
             Container.Bind<AudioMixer>().FromInstance(audioMixer).AsSingle();
             #endregion
         }
