@@ -18,7 +18,7 @@ namespace Arkanoid.UI.View
 		[SerializeField] private Button backButton;
 
 		[Header("Grid")]
-		[SerializeField] private GameObject sceneButton;
+		[SerializeField] private ChoseSceneButton sceneButton;
 		[SerializeField] private Transform gridGroup;
 
 		[Header("Tweening")]
@@ -30,6 +30,7 @@ namespace Arkanoid.UI.View
 		private bool isInitialized = false;
 
 		public event UnityAction OnBackButtonClicked;
+		public event UnityAction<int> OnSceneButtonClicked;
 		#endregion
 
 		private void OnEnable()
@@ -45,8 +46,13 @@ namespace Arkanoid.UI.View
 		private async void BackButtonClicked()
 		{
 			await Hide();
-			canvas.gameObject.SetActive(false);
 			OnBackButtonClicked.Invoke();
+		}
+
+		private async void OnSceneChosen(int sceneIndex)
+		{
+			await Hide();
+			OnSceneButtonClicked(sceneIndex);
 		}
 
 		public Task Show()
@@ -57,7 +63,9 @@ namespace Arkanoid.UI.View
 
 		public Task Hide()
 		{
-			return transform.DOLocalMoveX(hideDeltaChange, tweeningLength).AsyncWaitForCompletion();
+			Task task = transform.DOLocalMoveX(hideDeltaChange, tweeningLength).AsyncWaitForCompletion();
+			canvas.gameObject.SetActive(false);
+			return task;
 		}
 
 		public void UpdateScenesList(int scenesCount)
@@ -65,11 +73,11 @@ namespace Arkanoid.UI.View
 			if(isInitialized)
 				return;
 
-			Debug.Log(scenesCount);
 			isInitialized = true;
-			for(int i = 0; i < scenesCount; i++)
+			for(int i = 1; i <= scenesCount; i++)
 			{
-				Instantiate(sceneButton, gridGroup);
+				ChoseSceneButton button = Instantiate<ChoseSceneButton>(sceneButton, gridGroup);
+				button.Initialize(i, OnSceneChosen);
 			}
 		}
 	}

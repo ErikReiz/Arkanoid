@@ -1,8 +1,5 @@
 using Arkanoid.Data;
 using Arkanoid.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace Arkanoid.UI.Presenter
@@ -11,6 +8,7 @@ namespace Arkanoid.UI.Presenter
     {
 		#region FIELDS
 		[Inject] private MenuPresenter menuPresenter;
+		[Inject] private LoadScenePresenter loadScenePresenter;
 
 		private IScenesMenuView scenesMenuView;
 		private ScenesData scenesData;
@@ -22,11 +20,17 @@ namespace Arkanoid.UI.Presenter
 			this.scenesData = scenesData;
 
 			scenesMenuView.OnBackButtonClicked += Back;
+			scenesMenuView.OnSceneButtonClicked += OnSceneChosen;
 		}
 
 		private void Back()
 		{
 			menuPresenter.Run();
+		}
+
+		private void OnSceneChosen(int sceneIndex)
+		{
+			loadScenePresenter.LoadScene(sceneIndex);
 		}
 
 		public override void Run()

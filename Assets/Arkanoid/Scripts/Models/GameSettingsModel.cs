@@ -37,7 +37,6 @@ namespace Arkanoid.Models
 
 		public void ChangeResolutionScale(float scale)
 		{
-			Debug.Log(scale);
 			settingsPresset.ResolutionScale = scale;
 		}
 

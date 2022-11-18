@@ -19,7 +19,8 @@ namespace Arkanoid.Installers
             #region MODELS
             Container.Bind<GameSettingsModel>().ToSelf().AsSingle();
             Container.Bind<SaveDataModel>().ToSelf().AsSingle();
-			Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
+            Container.Bind<SceneLoaderModel>().ToSelf().AsSingle();
+            Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
             #endregion
 
             #region DATA

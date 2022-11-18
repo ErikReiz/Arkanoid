@@ -17,6 +17,13 @@ namespace Arkanoid.Models
 			this.scenesData = scenesData;
 		}
 
+		public AsyncOperation LoadMainMenu()
+		{
+			currentSceneIndex = -1;
+			SceneAsset scene = scenesData.MainMenu;
+			return SceneManager.LoadSceneAsync(scene.name);
+		}
+
 		public AsyncOperation LoadScene(int index)
 		{
 			try
@@ -31,18 +38,6 @@ namespace Arkanoid.Models
 				return LoadMainMenu();
 			}
 
-		}
-
-		public void LoadNextScene()
-		{
-
-		}
-
-		public AsyncOperation LoadMainMenu()
-		{
-			currentSceneIndex = -1;
-			SceneAsset scene = scenesData.MainMenu;
-			return SceneManager.LoadSceneAsync(scene.name);
 		}
 	}
 }

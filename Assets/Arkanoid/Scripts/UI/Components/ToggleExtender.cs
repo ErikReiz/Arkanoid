@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Arkanoid.Addons
+namespace Arkanoid.UI
 {
 	[RequireComponent(typeof(Toggle))]
 	public class ToggleExtender : MonoBehaviour
