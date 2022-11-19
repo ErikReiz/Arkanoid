@@ -19,11 +19,13 @@ namespace Arkanoid.Installers
         public override void InstallBindings()
         {
             #region MODELS
+            Container.Bind<PauseModel>().ToSelf().AsSingle();
             Container.Bind<GameSettingsModel>().ToSelf().AsSingle();
             Container.Bind<SaveDataModel>().ToSelf().AsSingle();
             Container.Bind<SceneLoaderModel>().ToSelf().AsSingle();
             Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
             #endregion
+
             Container.Bind<LoadScenePresenter>().ToSelf().AsSingle(); //TODO заменить
 
 			#region DATA
