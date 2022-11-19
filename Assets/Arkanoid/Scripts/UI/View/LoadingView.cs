@@ -17,6 +17,7 @@ namespace Arkanoid.UI.View
 
 		[Header("Tweening")]
 		[SerializeField] private float tweeningLength = 0.3f;
+		[SerializeField] private Transform tweeningObject;
 		#endregion
 
 		#region PROPERTIES
@@ -38,12 +39,12 @@ namespace Arkanoid.UI.View
 		public Task Show()
 		{
 			canvas.gameObject.SetActive(true);
-			return transform.DOScale(new Vector3(1, 1), tweeningLength).AsyncWaitForCompletion();
+			return tweeningObject.DOScale(new Vector3(1, 1), tweeningLength).AsyncWaitForCompletion();
 		}
 
 		public Task Hide()
 		{
-			Task task = transform.DOScale(Vector3.zero, tweeningLength).AsyncWaitForCompletion();
+			Task task = tweeningObject.DOScale(Vector3.zero, tweeningLength).AsyncWaitForCompletion();
 			canvas.gameObject.SetActive(false);
 			return task;
 		}

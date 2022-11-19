@@ -242,6 +242,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SFXOn
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 502
+        width: 260
+        height: 260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f519bc02502aff4e89a09ffb21060cd
+      internalID: -1543570462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MusicIcon
+      rect:
+        serializedVersion: 2
+        x: 2678
+        y: 526
+        width: 217
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99516bdf22514d4687c951084be765a
+      internalID: 381220415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SFXMuted
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 502
+        width: 250
+        height: 260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df738f83aa0cadb44ab33a1fa4156c79
+      internalID: -1032837347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -253,11 +316,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      SFXOn: -1543570462
       Button_1: 792963681
       PlayIcon: -831336217
       SettingsIcon: -1401769852
       Button_3: 526670401
+      MusicIcon: 381220415
       Button_2: 1403464074
+      SFXMuted: -1032837347
       CrossIcon: 85392776
   spritePackingTag: 
   pSDRemoveMatte: 0

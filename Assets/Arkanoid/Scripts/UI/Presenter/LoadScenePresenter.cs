@@ -7,18 +7,20 @@ namespace Arkanoid.UI.Presenter
 	public class LoadScenePresenter
 	{
 		#region FIELDS
-		ILoadingView loadingView;
-		SceneLoaderModel sceneLoaderModel;
+		private ILoadingView loadingView;
+		private ILoadingScreenFactory loadingScreenFactory;
+		private SceneLoaderModel sceneLoaderModel;
 		#endregion
 
-		public LoadScenePresenter(ILoadingView loadingView, SceneLoaderModel sceneLoaderModel)
+		public LoadScenePresenter(ILoadingScreenFactory loadingScreenFactory, SceneLoaderModel sceneLoaderModel)
 		{
-			this.loadingView = loadingView;
+			this.loadingScreenFactory = loadingScreenFactory;
 			this.sceneLoaderModel = sceneLoaderModel;
 		}
 
 		private async void Loading(System.Func<AsyncOperation> loadAction)
 		{
+			loadingView = loadingScreenFactory.Create();
 			await loadingView.Show();
 			loadingView.StartLoading(loadAction.Invoke());
 		}

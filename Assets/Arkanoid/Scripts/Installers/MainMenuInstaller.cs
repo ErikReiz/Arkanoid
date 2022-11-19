@@ -12,7 +12,6 @@ namespace Arkanoid.Installers
 		[SerializeField] private MainMenuView mainMenuView;
 		[SerializeField] private SettingsView settingsView;
 		[SerializeField] private ScenesMenuView scenesMenuView;
-		[SerializeField] private LoadingView loadingView;
 		#endregion
 
 		public override void InstallBindings()
@@ -21,14 +20,12 @@ namespace Arkanoid.Installers
 			Container.Bind<IMenuView>().FromInstance(mainMenuView).AsSingle();
 			Container.Bind<ISettingsView>().FromInstance(settingsView).AsSingle();
 			Container.Bind<IScenesMenuView>().FromInstance(scenesMenuView).AsSingle();
-			Container.Bind<ILoadingView>().FromInstance(loadingView).AsSingle();
 			#endregion
 
 			#region PRESENTERS
 			Container.Bind<MenuPresenter>().ToSelf().AsSingle().NonLazy();
 			Container.Bind<SettingsPresenter>().ToSelf().AsSingle().NonLazy();
 			Container.Bind<ScenesMenuPresenter>().ToSelf().AsSingle().NonLazy();
-			Container.Bind<LoadScenePresenter>().ToSelf().AsSingle().NonLazy();
 			#endregion
 		}
 

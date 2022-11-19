@@ -1,6 +1,6 @@
 using Arkanoid.Data;
 using Arkanoid.Models;
-using UnityEditor;
+using Arkanoid.UI.Presenter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -12,14 +12,14 @@ namespace Arkanoid.Managers
 		#region FIELDS
 		[Inject] GameSettingsModel settingsModel;
 		[Inject] SaveDataModel dataModel;
+		[Inject] LoadScenePresenter loadScenePresenter;
 		#endregion
 
 		private void Start()
 		{
 			Application.targetFrameRate = 60;
 			settingsModel.InitializeSettings(dataModel.LoadData<SettingsSaveData>());
-			//TODO заменит
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+			loadScenePresenter.LoadMainMenu();
 		}
 	}
 }

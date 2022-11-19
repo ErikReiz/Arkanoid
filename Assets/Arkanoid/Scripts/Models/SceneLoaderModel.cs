@@ -1,5 +1,4 @@
 using Arkanoid.Data;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +8,7 @@ namespace Arkanoid.Models
 	{
 		#region FIELDS
 		private ScenesData scenesData;
-		private int currentSceneIndex = -1;
+		private int currentSceneIndex = 0;
 		#endregion
 
 		public SceneLoaderModel(ScenesData scenesData)
@@ -19,9 +18,9 @@ namespace Arkanoid.Models
 
 		public AsyncOperation LoadMainMenu()
 		{
-			currentSceneIndex = -1;
-			SceneAsset scene = scenesData.MainMenu;
-			return SceneManager.LoadSceneAsync(scene.name);
+			currentSceneIndex = 0;
+			string scene = scenesData.MainMenu.name;
+			return SceneManager.LoadSceneAsync(scene);
 		}
 
 		public AsyncOperation LoadScene(int index)
@@ -30,8 +29,8 @@ namespace Arkanoid.Models
 			{
 				currentSceneIndex = Mathf.Abs(index) % scenesData.Scenes.Length;
 
-				SceneAsset scene = scenesData.Scenes[currentSceneIndex];
-				return SceneManager.LoadSceneAsync(scene.name);
+				string scene = scenesData.Scenes[currentSceneIndex - 1].name;
+				return SceneManager.LoadSceneAsync(scene);
 			}
 			catch
 			{

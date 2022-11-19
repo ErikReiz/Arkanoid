@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenes:
   - {fileID: 102900000, guid: cc0436b17dd72e747bc5b488e9a757c5, type: 3}
-  - {fileID: 102900000, guid: cc0436b17dd72e747bc5b488e9a757c5, type: 3}
-  - {fileID: 102900000, guid: cc0436b17dd72e747bc5b488e9a757c5, type: 3}
-  - {fileID: 102900000, guid: cc0436b17dd72e747bc5b488e9a757c5, type: 3}
+  - {fileID: 102900000, guid: 24e594341c369a1449ea1bd9c40153c4, type: 3}
   mainMenu: {fileID: 102900000, guid: 24e594341c369a1449ea1bd9c40153c4, type: 3}
