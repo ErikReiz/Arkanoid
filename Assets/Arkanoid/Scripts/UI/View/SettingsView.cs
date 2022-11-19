@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+
 namespace Arkanoid.UI.View
 {
 	public class SettingsView : MonoBehaviour, ISettingsView

@@ -4,7 +4,6 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Threading.Tasks;
-using Arkanoid.UI.Presenter;
 
 namespace Arkanoid.UI.View
 {
@@ -31,16 +30,16 @@ namespace Arkanoid.UI.View
 
         private void OnEnable()
 		{
-			playButton?.onClick.AddListener(OnPlayClicked);
-			settingsButton?.onClick.AddListener(OnSettingsClicked);
-			quitButton?.onClick.AddListener(OnQuitClicked);
+			playButton.onClick.AddListener(OnPlayClicked);
+			settingsButton.onClick.AddListener(OnSettingsClicked);
+			quitButton.onClick.AddListener(OnQuitClicked);
 		}
 
 		private void OnDisable()
 		{
-			playButton?.onClick.RemoveListener(OnPlayClicked);
-			settingsButton?.onClick.RemoveListener(OnSettingsClicked);
-			quitButton?.onClick.RemoveListener(OnQuitClicked);
+			playButton.onClick.RemoveListener(OnPlayClicked);
+			settingsButton.onClick.RemoveListener(OnSettingsClicked);
+			quitButton.onClick.RemoveListener(OnQuitClicked);
 		}
 
 		private async void OnPlayClicked()

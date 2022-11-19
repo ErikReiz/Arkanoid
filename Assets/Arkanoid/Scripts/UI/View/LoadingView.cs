@@ -31,6 +31,7 @@ namespace Arkanoid.UI.View
 
 			while(LoadingOperation.progress <= 1)
 			{
+				Debug.Log(LoadingOperation.progress);
 				loadingBar.value = LoadingOperation.progress;
 				yield return new WaitForEndOfFrame();
 			}
