@@ -6,31 +6,29 @@ namespace Arkanoid.Models
 {
 	public class SceneLoaderModel
 	{
-		#region FIELDS
-		private ScenesData scenesData;
-		private int currentSceneIndex = 0;
+		#region CONST
+
 		#endregion
 
-		public SceneLoaderModel(ScenesData scenesData)
+		#region FIELDS
+		private MainConfig config;
+		#endregion
+
+		public SceneLoaderModel(MainConfig config)
 		{
-			this.scenesData = scenesData;
+			this.config = config;
 		}
 
 		public AsyncOperation LoadMainMenu()
 		{
-			currentSceneIndex = 0;
-			string scene = scenesData.MainMenu.name;
-			return SceneManager.LoadSceneAsync(scene);
+			return SceneManager.LoadSceneAsync(config.MainMenu);
 		}
 
 		public AsyncOperation LoadScene(int index)
 		{
 			try
 			{
-				currentSceneIndex = Mathf.Abs(index) % scenesData.Scenes.Length;
-
-				string scene = scenesData.Scenes[currentSceneIndex - 1].name;
-				return SceneManager.LoadSceneAsync(scene);
+				return SceneManager.LoadSceneAsync(config.GetGameplaySceneIndex(index));
 			}
 			catch
 			{

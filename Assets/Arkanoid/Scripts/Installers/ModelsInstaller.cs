@@ -12,7 +12,7 @@ namespace Arkanoid.Installers
     public class ModelsInstaller : MonoInstaller
     {
         #region SERIALIZABLE FIELDS
-        [SerializeField] private ScenesData levelsData;
+        [SerializeField] private MainConfig config;
         [SerializeField] private AudioMixer audioMixer;
         #endregion
 
@@ -28,8 +28,8 @@ namespace Arkanoid.Installers
 
             Container.Bind<LoadScenePresenter>().ToSelf().AsSingle(); //TODO заменить
 
-			#region DATA
-			Container.Bind<ScenesData>().FromScriptableObject(levelsData).AsSingle();
+			#region CONFIGS
+			Container.Bind<MainConfig>().FromScriptableObject(config).AsSingle();
 			#endregion
 
 			#region OTHER

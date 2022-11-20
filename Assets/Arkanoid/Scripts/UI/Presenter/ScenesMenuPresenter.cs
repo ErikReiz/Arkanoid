@@ -11,13 +11,13 @@ namespace Arkanoid.UI.Presenter
 		[Inject] private LoadScenePresenter loadScenePresenter;
 
 		private IScenesMenuView scenesMenuView;
-		private ScenesData scenesData;
+		private MainConfig config;
 		#endregion
 
-		public ScenesMenuPresenter(IScenesMenuView view, ScenesData scenesData)
+		public ScenesMenuPresenter(IScenesMenuView view, MainConfig config)
 		{
 			scenesMenuView = view;
-			this.scenesData = scenesData;
+			this.config = config;
 
 			scenesMenuView.OnBackButtonClicked += Back;
 			scenesMenuView.OnSceneButtonClicked += OnSceneChosen;
@@ -35,7 +35,7 @@ namespace Arkanoid.UI.Presenter
 
 		public override void Run()
 		{
-			scenesMenuView.UpdateScenesList(scenesData.Scenes.Length);
+			scenesMenuView.UpdateScenesList(config.GameplayScenesCount);
 			scenesMenuView.Show();
 		}
 	}

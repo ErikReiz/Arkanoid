@@ -15,7 +15,7 @@ namespace Arkanoid.UI
 		public void Initialize(int sceneNumber, UnityAction<int> onSceneChosen)
 		{
 			text.SetText(sceneNumber.ToString());
-			button.onClick.AddListener(() => onSceneChosen.Invoke(sceneNumber));
+			button.onClick.AddListener(() => onSceneChosen.Invoke(sceneNumber - 1));
 		}
 	}
 }
