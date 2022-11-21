@@ -1,9 +1,11 @@
+using Arkanoid.Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
-namespace Arkanoid.Platform
+namespace Arkanoid.Gameplay.Platform
 {
 	public class PlayerMovement : MonoBehaviour
 	{
@@ -12,6 +14,8 @@ namespace Arkanoid.Platform
 		#endregion
 
 		#region FIELDS
+		[Inject] private PauseModel pauseModel;
+
 		private Camera mainCamera;
 		private Vector2 inputVector;
 		#endregion
@@ -19,6 +23,7 @@ namespace Arkanoid.Platform
 		private void Awake()
 		{
 			mainCamera = Camera.main;
+
 			CalculateScreenBorders();
 		}
 
@@ -42,6 +47,9 @@ namespace Arkanoid.Platform
 
 		public void OnMove(InputAction.CallbackContext context)
 		{
+			if (pauseModel.IsPaused)
+				return;
+
 			inputVector = mainCamera.ScreenToWorldPoint(context.ReadValue<Vector2>());
 			inputVector.x = Mathf.Clamp(inputVector.x, -platformBorder, platformBorder);
 		}

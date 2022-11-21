@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1519804422647284559}
   - component: {fileID: 5085060380084666335}
-  - component: {fileID: 8221986572419659278}
+  - component: {fileID: -1046291427312138401}
   - component: {fileID: 5212680635903880290}
+  - component: {fileID: 8221986572419659278}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: -1046291427312138401}
   - {fileID: 5212680635903880290}
   - {fileID: 8221986572419659278}
   _installerPrefabs: []
@@ -64,6 +66,31 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 0
       _defaultAsyncTickPriority: 1
+--- !u!114 &-1046291427312138401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848427555695368204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b2a4df97b69a34ca2a1bfa53838234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5212680635903880290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848427555695368204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7277d5997c5ec0342a7246b185d725e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingView: {fileID: 160996523296645672, guid: d68122bdb7f86d642b7a86ce97134ff9, type: 3}
 --- !u!114 &8221986572419659278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,16 +105,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 44b3abaed25649c44a62d0484ff4081b, type: 2}
   audioMixer: {fileID: 24100000, guid: 4c387143cca7c4d489f0cae20cb24a9b, type: 2}
---- !u!114 &5212680635903880290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7848427555695368204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7277d5997c5ec0342a7246b185d725e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingView: {fileID: 160996523296645672, guid: d68122bdb7f86d642b7a86ce97134ff9, type: 3}

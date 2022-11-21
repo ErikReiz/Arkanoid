@@ -1,5 +1,6 @@
 using Arkanoid.Interfaces;
 using Arkanoid.Patterns.Factories;
+using Arkanoid.UI.Presenter;
 using Arkanoid.UI.View;
 using UnityEngine;
 using Zenject;
@@ -14,8 +15,13 @@ namespace Arkanoid.Installers
 
         public override void InstallBindings()
         {
-            Container.Bind<LoadingView>().FromInstance(loadingView).AsSingle();
+			#region LOADING
+			Container.Bind<LoadingView>().FromInstance(loadingView).AsSingle();
+            Container.Bind<LoadScenePresenter>().ToSelf().AsSingle();
             Container.Bind<ILoadingScreenFactory>().To<LoadingScreenFactory>().AsSingle();
+			#endregion
+
+			Container.Bind<BonusFactory>().ToSelf().AsSingle();
         }
 	}
 }

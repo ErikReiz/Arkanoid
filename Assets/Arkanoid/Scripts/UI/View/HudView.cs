@@ -34,13 +34,11 @@ namespace Arkanoid.UI.View
 
 		public Task Show()
 		{
-			Debug.Log("showed");
 			return null;
 		}
 
 		public Task Hide()
 		{
-			Debug.Log("hided");
 			return null;
 		}
 	}

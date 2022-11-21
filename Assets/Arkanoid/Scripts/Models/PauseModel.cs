@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Arkanoid.Models
 {
 	public class PauseModel
@@ -9,6 +11,7 @@ namespace Arkanoid.Models
 		public void PauseGame(bool isPaused)
 		{
 			IsPaused = isPaused;
+			Time.timeScale = isPaused ? 0 : 1;
 		}
 	}
 }

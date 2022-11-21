@@ -1,8 +1,6 @@
 using Arkanoid.Data;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
-using Arkanoid.Patterns.Factories;
-using Arkanoid.UI.Presenter;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -24,9 +22,7 @@ namespace Arkanoid.Installers
             Container.Bind<SaveDataModel>().ToSelf().AsSingle();
             Container.Bind<SceneLoaderModel>().ToSelf().AsSingle();
             Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
-            #endregion
-
-            Container.Bind<LoadScenePresenter>().ToSelf().AsSingle(); //TODO заменить
+			#endregion
 
 			#region CONFIGS
 			Container.Bind<MainConfig>().FromScriptableObject(config).AsSingle();

@@ -8,12 +8,15 @@ namespace Arkanoid.Data
 	public class MainConfig : ScriptableObject
 	{
 		#region SERIALIZABLE FIELDS
+		[SerializeField] private LayerMask playerLayer;
+
 		[Header("Scenes")]
 		[SerializeField] private int mainMenuIndex;
 		[SerializeField] private Vector2Int gameplayScenesRange;
 		#endregion
 
 		#region PROPERTIES
+		public LayerMask PlayerLayer { get { return playerLayer; } }
 		public int MainMenu { get { return mainMenuIndex; } }
 		public int GameplayScenesCount { get { return gameplayScenesRange.y - gameplayScenesRange.x + 1; } }
 		#endregion
