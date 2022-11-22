@@ -104,4 +104,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 44b3abaed25649c44a62d0484ff4081b, type: 2}
+  remoteConfig: {fileID: 11400000, guid: 8e3a756fdea7bc1418a3d63359feb376, type: 2}
   audioMixer: {fileID: 24100000, guid: 4c387143cca7c4d489f0cae20cb24a9b, type: 2}

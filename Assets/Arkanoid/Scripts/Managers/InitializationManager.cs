@@ -23,12 +23,13 @@ namespace Arkanoid.Managers
 			Application.targetFrameRate = 60;
 			settingsModel.InitializeSettings(dataModel.LoadData<SettingsSaveData>());
 			LoadConfig();
+
+			loadScenePresenter.LoadMainMenu();
 		}
 
 		private void LoadConfig()
 		{
 			ConfigManager.FetchConfigs<UserAttributes, AppAttributes>(new UserAttributes(), new AppAttributes());
-			ConfigManager.FetchCompleted += t => loadScenePresenter.LoadMainMenu();
 		}
 	}
 }

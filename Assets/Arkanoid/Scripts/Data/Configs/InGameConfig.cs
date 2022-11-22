@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Arkanoid.Data
 {
-	[CreateAssetMenu(fileName = "Config")]
+	[CreateAssetMenu(fileName = "In Game Config")]
 	public class InGameConfig : ScriptableObject
 	{
 		#region SERIALIZABLE FIELDS

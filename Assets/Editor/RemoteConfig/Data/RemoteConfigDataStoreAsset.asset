@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: '[]'
-  _rsLastCachedKeyList: '[]'
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"1c3c65fb-6795-4b2a-8071-5a4728a60378\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Game settings\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"bonusFallSpeed\": 5,\r\n       
+    \"sizeBonusMultiplier\": 0\r\n      }\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"1c3c65fb-6795-4b2a-8071-5a4728a60378\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Game settings\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"bonusFallSpeed\": 5,\r\n       
+    \"sizeBonusMultiplier\": 0\r\n      }\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"2aa51a80-e759-425e-a9e7-d0da24e7d58d\",\r\n   
     \"name\": \"production\",\r\n    \"id\": \"2ff941b0-d824-45ea-9d57-f2946042e57b\",\r\n   
     \"isDefault\": true,\r\n    \"createdAt\": \"2022-11-20T17:55:28Z\",\r\n    \"updatedAt\":

@@ -7,7 +7,7 @@ namespace Arkanoid.UI.Presenter
 	public class LoadPresenter
 	{
 		#region PROPERTIES
-		public float TotalLoadingProgress { get { return }}
+		public float TotalLoadingProgress { get { return loadSceneOperation.progress; } }
 		#endregion
 
 		#region FIELDS
@@ -15,7 +15,7 @@ namespace Arkanoid.UI.Presenter
 		private ILoadingScreenFactory loadingScreenFactory;
 		private SceneLoaderModel sceneLoaderModel;
 
-		private AsyncOperation loadingSceneOperation;
+		private AsyncOperation loadSceneOperation;
 		#endregion
 
 		public LoadPresenter(ILoadingScreenFactory loadingScreenFactory, SceneLoaderModel sceneLoaderModel)
@@ -26,10 +26,10 @@ namespace Arkanoid.UI.Presenter
 
 		private async void Loading(System.Func<AsyncOperation> loadAction)
 		{
-			loadingView = loadingScreenFactory.Create();
+			loadingView = loadingScreenFactory.Create(this);
 			await loadingView.Show();
 
-			loadingSceneOperation = loadAction.Invoke();
+			loadSceneOperation = loadAction.Invoke();
 			loadingView.StartLoading();
 		}
 

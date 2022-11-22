@@ -23,14 +23,14 @@ namespace Arkanoid.UI.View
 		#endregion
 
 		#region PROPERTIES
-		[Inject] LoadPresenter loadPresenter;
+		private LoadPresenter loadPresenter;
 		#endregion
 
 		private IEnumerator Loading()
 		{
-			while(loadPresenter. <= 1)
+			while(loadPresenter.TotalLoadingProgress <= 1)
 			{
-				loadingBar.value = LoadingOperation.progress;
+				loadingBar.value = loadPresenter.TotalLoadingProgress;
 				yield return new WaitForEndOfFrame();
 			}
 		}
@@ -51,6 +51,11 @@ namespace Arkanoid.UI.View
 		public void StartLoading()
 		{
 			StartCoroutine(Loading());
+		}
+
+		public void Initialize(LoadPresenter presenter)
+		{
+			loadPresenter = presenter;
 		}
 	}
 }

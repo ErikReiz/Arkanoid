@@ -1,6 +1,7 @@
 using Arkanoid.Data;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
+using Unity.RemoteConfig;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -11,6 +12,7 @@ namespace Arkanoid.Installers
     {
         #region SERIALIZABLE FIELDS
         [SerializeField] private InGameConfig config;
+		[SerializeField] private RemoteConfig remoteConfig;
         [SerializeField] private AudioMixer audioMixer;
         #endregion
 
@@ -26,9 +28,14 @@ namespace Arkanoid.Installers
 
 			#region CONFIGS
 			Container.Bind<InGameConfig>().FromScriptableObject(config).AsSingle();
-			#endregion
+            ConfigManager.FetchCompleted += t =>
+            {
+                Container.Bind<RemoteConfig>().FromScriptableObject(remoteConfig).AsSingle();
+                remoteConfig.L();
+            }; 
+            #endregion
 
-			#region OTHER
+            #region OTHER
             Container.Bind<AudioMixer>().FromInstance(audioMixer).AsSingle();
             #endregion
         }

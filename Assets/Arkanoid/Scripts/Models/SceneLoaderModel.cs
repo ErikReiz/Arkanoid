@@ -21,7 +21,7 @@ namespace Arkanoid.Models
 
 		public AsyncOperation LoadMainMenu()
 		{
-			return SceneManager.LoadSceneAsync(1);
+			return SceneManager.LoadSceneAsync(config.MainMenu);
 		}
 
 		public AsyncOperation LoadScene(int index)

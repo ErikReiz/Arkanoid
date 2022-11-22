@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Threading.Tasks;
+using Unity.RemoteConfig;
 
 namespace Arkanoid.UI.View
 {
