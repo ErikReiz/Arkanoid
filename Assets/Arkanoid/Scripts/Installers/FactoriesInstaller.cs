@@ -17,7 +17,7 @@ namespace Arkanoid.Installers
         {
 			#region LOADING
 			Container.Bind<LoadingView>().FromInstance(loadingView).AsSingle();
-            Container.Bind<LoadScenePresenter>().ToSelf().AsSingle();
+            Container.Bind<LoadPresenter>().ToSelf().AsSingle();
             Container.Bind<ILoadingScreenFactory>().To<LoadingScreenFactory>().AsSingle();
 			#endregion
 

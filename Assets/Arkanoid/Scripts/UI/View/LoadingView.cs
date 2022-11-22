@@ -1,9 +1,11 @@
 using Arkanoid.Interfaces;
+using Arkanoid.UI.Presenter;
 using DG.Tweening;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Arkanoid.UI.View
 {
@@ -21,17 +23,13 @@ namespace Arkanoid.UI.View
 		#endregion
 
 		#region PROPERTIES
-		public AsyncOperation LoadingOperation { private get; set; }
+		[Inject] LoadPresenter loadPresenter;
 		#endregion
 
 		private IEnumerator Loading()
 		{
-			if (LoadingOperation == null)
-				StopCoroutine(Loading());
-
-			while(LoadingOperation.progress <= 1)
+			while(loadPresenter. <= 1)
 			{
-				Debug.Log(LoadingOperation.progress);
 				loadingBar.value = LoadingOperation.progress;
 				yield return new WaitForEndOfFrame();
 			}
@@ -50,9 +48,8 @@ namespace Arkanoid.UI.View
 			return task;
 		}
 
-		public void StartLoading(AsyncOperation loadingOperation)
+		public void StartLoading()
 		{
-			LoadingOperation = loadingOperation;
 			StartCoroutine(Loading());
 		}
 	}

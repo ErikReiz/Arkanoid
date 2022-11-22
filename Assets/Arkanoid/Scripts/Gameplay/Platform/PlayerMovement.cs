@@ -9,8 +9,8 @@ namespace Arkanoid.Gameplay.Platform
 {
 	public class PlayerMovement : MonoBehaviour
 	{
-		#region CONST
-		private float platformBorder = 2f;
+		#region PROPERTIES
+		public float PlatformBorders { set { platformBorder = value; } }
 		#endregion
 
 		#region FIELDS
@@ -18,25 +18,17 @@ namespace Arkanoid.Gameplay.Platform
 
 		private Camera mainCamera;
 		private Vector2 inputVector;
+		private float platformBorder = 2f;
 		#endregion
 
 		private void Awake()
 		{
 			mainCamera = Camera.main;
-
-			CalculateScreenBorders();
 		}
 
 		private void Update()
 		{
 			Move();
-		}
-
-		private void CalculateScreenBorders()
-		{
-			platformBorder = mainCamera.ScreenToWorldPoint(new Vector2(mainCamera.pixelWidth, transform.position.y)).x;
-			Collider2D collider = GetComponent<Collider2D>();
-			platformBorder -= collider.bounds.size.x / 2;
 		}
 
 		private void Move()

@@ -10,7 +10,7 @@ namespace Arkanoid.Installers
     public class ModelsInstaller : MonoInstaller
     {
         #region SERIALIZABLE FIELDS
-        [SerializeField] private MainConfig config;
+        [SerializeField] private InGameConfig config;
         [SerializeField] private AudioMixer audioMixer;
         #endregion
 
@@ -25,7 +25,7 @@ namespace Arkanoid.Installers
 			#endregion
 
 			#region CONFIGS
-			Container.Bind<MainConfig>().FromScriptableObject(config).AsSingle();
+			Container.Bind<InGameConfig>().FromScriptableObject(config).AsSingle();
 			#endregion
 
 			#region OTHER

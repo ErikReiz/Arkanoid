@@ -1,5 +1,6 @@
 using Arkanoid.Data;
 using Arkanoid.Interfaces;
+using Arkanoid.Models;
 using UnityEngine;
 using Zenject;
 
@@ -9,13 +10,17 @@ namespace Arkanoid.Gameplay.Bonuses
 	{
 		#region FIELDS
 		[Inject] protected IBonusVisitor bonusVisitor;
-		[Inject] private MainConfig config;
+		[Inject] private InGameConfig config;
+		[Inject] private PauseModel pauseModel;
 
 		private float speed = 5f; // TODO заменить
 		#endregion
 
 		private void FixedUpdate()
 		{
+			if (pauseModel.IsPaused)
+				return;
+
 			transform.position += Vector3.down * speed * Time.fixedDeltaTime;
 		}
 

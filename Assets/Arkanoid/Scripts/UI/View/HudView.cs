@@ -9,6 +9,8 @@ namespace Arkanoid.UI.View
 	public class HudView : MonoBehaviour, IHudView
 	{
 		#region SERIALIZABLE FIELDS
+		[SerializeField] private Canvas canvas;
+
 		[Header("Buttons")]
 		[SerializeField] private Button pauseButton;
 		#endregion
@@ -29,16 +31,25 @@ namespace Arkanoid.UI.View
 
 		private void PauseButtonClicked()
 		{
+			Hide();
 			OnPauseButtonClicked.Invoke();
+		}
+
+		private void OnApplicationPause(bool pause)
+		{
+			if(pause)
+				PauseButtonClicked();
 		}
 
 		public Task Show()
 		{
+			canvas.gameObject.SetActive(true);
 			return null;
 		}
 
 		public Task Hide()
 		{
+			canvas.gameObject.SetActive(false);
 			return null;
 		}
 	}

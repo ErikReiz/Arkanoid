@@ -3,27 +3,28 @@ using Arkanoid.Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Arkanoid.UI.Presenter
 {
 	public class HudPresenter : BasePresenter
 	{
 		#region FIELDS
+		[Inject] private PauseMenuPresenter pauseMenuPresenter;
+
 		private IHudView hudView;
-		private PauseModel pauseModel;
 		#endregion
 
-		public HudPresenter(IHudView hudView, PauseModel pauseModel)
+		public HudPresenter(IHudView hudView)
 		{
 			this.hudView = hudView;
-			this.pauseModel = pauseModel;
 
 			hudView.OnPauseButtonClicked += PauseGame;
 		}
 
 		private void PauseGame()
 		{
-			pauseModel.PauseGame(true);
+			pauseMenuPresenter.Run();
 		}
 
 		public override void Run()

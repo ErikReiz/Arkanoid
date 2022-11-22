@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 namespace Arkanoid.Data
 {
 	[CreateAssetMenu(fileName = "Config")]
-	public class MainConfig : ScriptableObject
+	public class InGameConfig : ScriptableObject
 	{
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private LayerMask playerLayer;

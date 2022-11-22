@@ -5,8 +5,7 @@ namespace Arkanoid.Interfaces
 	public interface ILoadingView : IView
 	{
 		#region METHODS
-		public void StartLoading(AsyncOperation loadingOperation);
-		public AsyncOperation LoadingOperation { set; }
+		public void StartLoading();
 		#endregion
 	}
 }

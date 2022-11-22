@@ -18,6 +18,7 @@ namespace Arkanoid.Gameplay.Platform
 
 		#region FIELDS
 		[Inject] private GameManager gameManager;
+		[Inject] private PauseModel pauseModel;
 
 		private Vector3 movementDirection;
 		#endregion
@@ -38,6 +39,9 @@ namespace Arkanoid.Gameplay.Platform
 
 		private void FixedUpdate()
 		{
+			if (pauseModel.IsPaused)
+				return;
+
 			transform.position += movementDirection * speed * Time.fixedDeltaTime;
 		}
 

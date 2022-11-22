@@ -4,15 +4,21 @@ using UnityEngine;
 
 namespace Arkanoid.UI.Presenter
 {
-	public class LoadScenePresenter
+	public class LoadPresenter
 	{
+		#region PROPERTIES
+		public float TotalLoadingProgress { get { return }}
+		#endregion
+
 		#region FIELDS
 		private ILoadingView loadingView;
 		private ILoadingScreenFactory loadingScreenFactory;
 		private SceneLoaderModel sceneLoaderModel;
+
+		private AsyncOperation loadingSceneOperation;
 		#endregion
 
-		public LoadScenePresenter(ILoadingScreenFactory loadingScreenFactory, SceneLoaderModel sceneLoaderModel)
+		public LoadPresenter(ILoadingScreenFactory loadingScreenFactory, SceneLoaderModel sceneLoaderModel)
 		{
 			this.loadingScreenFactory = loadingScreenFactory;
 			this.sceneLoaderModel = sceneLoaderModel;
@@ -22,7 +28,9 @@ namespace Arkanoid.UI.Presenter
 		{
 			loadingView = loadingScreenFactory.Create();
 			await loadingView.Show();
-			loadingView.StartLoading(loadAction.Invoke());
+
+			loadingSceneOperation = loadAction.Invoke();
+			loadingView.StartLoading();
 		}
 
 		public void LoadMainMenu()

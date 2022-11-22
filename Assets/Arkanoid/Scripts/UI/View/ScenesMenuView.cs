@@ -46,12 +46,14 @@ namespace Arkanoid.UI.View
 		private async void BackButtonClicked()
 		{
 			await Hide();
+			canvas.gameObject.SetActive(false);
 			OnBackButtonClicked.Invoke();
 		}
 
 		private async void OnSceneChosen(int sceneIndex)
 		{
 			await Hide();
+			canvas.gameObject.SetActive(false);
 			OnSceneButtonClicked(sceneIndex);
 		}
 
@@ -63,9 +65,7 @@ namespace Arkanoid.UI.View
 
 		public Task Hide()
 		{
-			Task task = transform.DOLocalMoveX(hideDeltaChange, tweeningLength).AsyncWaitForCompletion();
-			canvas.gameObject.SetActive(false);
-			return task;
+			return transform.DOLocalMoveX(hideDeltaChange, tweeningLength).AsyncWaitForCompletion();
 		}
 
 		public void UpdateScenesList(int scenesCount)

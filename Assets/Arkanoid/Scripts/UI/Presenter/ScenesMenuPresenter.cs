@@ -8,13 +8,13 @@ namespace Arkanoid.UI.Presenter
     {
 		#region FIELDS
 		[Inject] private MenuPresenter menuPresenter;
-		[Inject] private LoadScenePresenter loadScenePresenter;
+		[Inject] private LoadPresenter loadScenePresenter;
 
 		private IScenesMenuView scenesMenuView;
-		private MainConfig config;
+		private InGameConfig config;
 		#endregion
 
-		public ScenesMenuPresenter(IScenesMenuView view, MainConfig config)
+		public ScenesMenuPresenter(IScenesMenuView view, InGameConfig config)
 		{
 			scenesMenuView = view;
 			this.config = config;

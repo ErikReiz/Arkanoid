@@ -11,17 +11,17 @@ namespace Arkanoid.Models
 		#endregion
 
 		#region FIELDS
-		private MainConfig config;
+		private InGameConfig config;
 		#endregion
 
-		public SceneLoaderModel(MainConfig config)
+		public SceneLoaderModel(InGameConfig config)
 		{
 			this.config = config;
 		}
 
 		public AsyncOperation LoadMainMenu()
 		{
-			return SceneManager.LoadSceneAsync(config.MainMenu);
+			return SceneManager.LoadSceneAsync(1);
 		}
 
 		public AsyncOperation LoadScene(int index)

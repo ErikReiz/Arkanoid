@@ -12,6 +12,7 @@ namespace Arkanoid.Installers
 		#region SERIALIZABLE FIELDS
 		[Header("UI")]
 		[SerializeField] private HudView hudView;
+		[SerializeField] private PauseMenuView pauseView;
 
 		[Header("Gaemplay")]
 		[SerializeField] private Player player;
@@ -21,10 +22,12 @@ namespace Arkanoid.Installers
         {
 			#region VIEW
 			Container.Bind<IHudView>().FromInstance(hudView).AsSingle();
+			Container.Bind<IPauseMenuView>().FromInstance(pauseView).AsSingle();
 			#endregion
 
 			#region PRESENTER
 			Container.Bind<HudPresenter>().ToSelf().AsSingle().NonLazy();
+			Container.Bind<PauseMenuPresenter>().ToSelf().AsSingle().NonLazy();
 			#endregion
 
 			#region GAMEPLAY

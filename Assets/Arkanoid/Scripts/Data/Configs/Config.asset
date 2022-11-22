@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70273e57edbf65147a3d40a92c4e7865, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
   mainMenuIndex: 1
   gameplayScenesRange: {x: 2, y: 2}
