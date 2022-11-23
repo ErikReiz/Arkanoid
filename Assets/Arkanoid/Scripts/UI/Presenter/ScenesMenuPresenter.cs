@@ -7,28 +7,24 @@ namespace Arkanoid.UI.Presenter
     public class ScenesMenuPresenter : BasePresenter
     {
 		#region FIELDS
-		[Inject] private MenuPresenter menuPresenter;
+		[Inject] private MainMenuPresenter menuPresenter;
 		[Inject] private LoadPresenter loadScenePresenter;
+		[Inject] private IScenesMenuView scenesMenuView;
 
-		private IScenesMenuView scenesMenuView;
 		private InGameConfig config;
 		#endregion
 
-		public ScenesMenuPresenter(IScenesMenuView view, InGameConfig config)
+		public ScenesMenuPresenter(InGameConfig config)
 		{
-			scenesMenuView = view;
 			this.config = config;
-
-			scenesMenuView.OnBackButtonClicked += Back;
-			scenesMenuView.OnSceneButtonClicked += OnSceneChosen;
 		}
 
-		private void Back()
+		public void Back()
 		{
 			menuPresenter.Run();
 		}
 
-		private void OnSceneChosen(int sceneIndex)
+		public void OnSceneChosen(int sceneIndex)
 		{
 			loadScenePresenter.LoadScene(sceneIndex);
 		}

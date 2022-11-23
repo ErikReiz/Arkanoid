@@ -22,7 +22,7 @@ namespace Arkanoid.Installers
         {
 			#region VIEW
 			Container.Bind<IHudView>().FromInstance(hudView).AsSingle();
-			Container.Bind<IPauseMenuView>().FromInstance(pauseView).AsSingle();
+			Container.Bind<IView>().FromInstance(pauseView).AsSingle();
 			#endregion
 
 			#region PRESENTER

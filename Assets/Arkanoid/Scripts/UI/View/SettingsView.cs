@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using Zenject;
+using Arkanoid.UI.Presenter;
 
 namespace Arkanoid.UI.View
 {
@@ -29,14 +31,10 @@ namespace Arkanoid.UI.View
 		#endregion
 
 		#region FIELDS
-		public event UnityAction OnBackButtonClicked;
-		public event UnityAction OnApplyButtonClicked;
-		public event UnityAction<float> OnResolutionScaleChanged;
-		public event UnityAction<bool> OnSFXVolumeChanged;
-		public event UnityAction<bool> OnMusicVolumeChanged;
-        #endregion
+		[Inject] private SettingsPresenter settingsPresenter;
+		#endregion
 
-        private void OnEnable()
+		private void OnEnable()
 		{
 			applyButton.onClick.AddListener(ApplyClicked);
 			backButton.onClick.AddListener(BackButtonClicked);
@@ -56,30 +54,30 @@ namespace Arkanoid.UI.View
 
 		private void ApplyClicked()
 		{
-			OnApplyButtonClicked.Invoke();
+			settingsPresenter.ApplySettings();
 		}
 
 		private async void BackButtonClicked()
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
-			OnBackButtonClicked.Invoke();
+			settingsPresenter.BackToMenu();
 		}
 
 		private void ChangeResolutionScale(int index)
 		{
 			float scale = 1 - index * resoluitonScaleStep;
-			OnResolutionScaleChanged.Invoke(scale);
+			settingsPresenter.ChangeResolutionScale(scale);
 		}
 
 		private void OnSFXToggled(bool isOn)
 		{
-			OnSFXVolumeChanged.Invoke(isOn);
+			settingsPresenter.ChangeSFXVolume(isOn);
 		}
 
 		private void OnMusicToggled(bool isOn)
 		{
-			OnMusicVolumeChanged.Invoke(isOn);
+			settingsPresenter.ChangeMusicVolume(isOn);
 		}
 
 		public Task Show()

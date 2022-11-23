@@ -3,23 +3,13 @@ using Zenject;
 
 namespace Arkanoid.UI.Presenter
 {
-	public class MenuPresenter : BasePresenter
+	public class MainMenuPresenter : BasePresenter
 	{
 		#region FIELDS
 		[Inject] private SettingsPresenter settingsPresenter;
 		[Inject] private ScenesMenuPresenter scenesMenuPresenter;
-
-		private IMenuView menuView;
+		[Inject] private IView menuView;
 		#endregion
-
-		public MenuPresenter(IMenuView view)
-		{
-			menuView = view;
-
-			menuView.OnPlayButtonClicked += Play;
-			menuView.OnSettingsButtonClicked += OpenSettings;
-			menuView.OnQuitButtonClicked += Quit;
-		}
 
 		public void Play()
 		{

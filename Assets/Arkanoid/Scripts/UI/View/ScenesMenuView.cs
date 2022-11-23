@@ -1,4 +1,5 @@
 using Arkanoid.Interfaces;
+using Arkanoid.UI.Presenter;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Arkanoid.UI.View
 {
@@ -27,10 +29,9 @@ namespace Arkanoid.UI.View
 		#endregion
 
 		#region FIELDS
-		private bool isInitialized = false;
+		[Inject] private ScenesMenuPresenter menuPresenter;
 
-		public event UnityAction OnBackButtonClicked;
-		public event UnityAction<int> OnSceneButtonClicked;
+		private bool isInitialized = false;
 		#endregion
 
 		private void OnEnable()
@@ -47,14 +48,14 @@ namespace Arkanoid.UI.View
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
-			OnBackButtonClicked.Invoke();
+			menuPresenter.Back();
 		}
 
 		private async void OnSceneChosen(int sceneIndex)
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
-			OnSceneButtonClicked(sceneIndex);
+			menuPresenter.OnSceneChosen(sceneIndex);
 		}
 
 		public Task Show()

@@ -1,8 +1,9 @@
 using Arkanoid.Interfaces;
+using Arkanoid.UI.Presenter;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Arkanoid.UI.View
 {
@@ -16,7 +17,7 @@ namespace Arkanoid.UI.View
 		#endregion
 
 		#region FIELDS
-		public event UnityAction OnPauseButtonClicked;
+		[Inject] private HudPresenter hudPresenter;
 		#endregion
 
 		private void OnEnable()
@@ -32,7 +33,7 @@ namespace Arkanoid.UI.View
 		private void PauseButtonClicked()
 		{
 			Hide();
-			OnPauseButtonClicked.Invoke();
+			hudPresenter.PauseGame();
 		}
 
 		private void OnApplicationPause(bool pause)

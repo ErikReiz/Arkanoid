@@ -11,18 +11,10 @@ namespace Arkanoid.UI.Presenter
 	{
 		#region FIELDS
 		[Inject] private PauseMenuPresenter pauseMenuPresenter;
-
-		private IHudView hudView;
+		[Inject] private IHudView hudView;
 		#endregion
 
-		public HudPresenter(IHudView hudView)
-		{
-			this.hudView = hudView;
-
-			hudView.OnPauseButtonClicked += PauseGame;
-		}
-
-		private void PauseGame()
+		public void PauseGame()
 		{
 			pauseMenuPresenter.Run();
 		}

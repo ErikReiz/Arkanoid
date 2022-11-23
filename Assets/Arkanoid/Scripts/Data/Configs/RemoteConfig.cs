@@ -21,7 +21,7 @@ namespace Arkanoid.Data
 
 		public void L()
 		{
-			Debug.Log(ConfigManager.appConfig.GetJson(gameSettings).);
+			Debug.Log(ConfigManager.appConfig.GetJson(gameSettings));
 		}
 
 		private void InitializeFields()

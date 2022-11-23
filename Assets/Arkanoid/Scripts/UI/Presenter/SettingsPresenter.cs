@@ -7,48 +7,41 @@ namespace Arkanoid.UI.Presenter
     public class SettingsPresenter : BasePresenter
     {
 		#region FIELDS
-		[Inject] private MenuPresenter menuPresenter;
+		[Inject] private MainMenuPresenter menuPresenter;
+		[Inject] private ISettingsView settingsView;
 
-		private ISettingsView settingsView;
 		private GameSettingsModel gameSettingsModel;
 		private SaveDataModel saveDataModel;
 		#endregion
 
-		public SettingsPresenter(ISettingsView view, GameSettingsModel gameSettingsModel, SaveDataModel saveDataModel)
+		public SettingsPresenter(GameSettingsModel gameSettingsModel, SaveDataModel saveDataModel)
 		{
-			settingsView = view;
 			this.gameSettingsModel = gameSettingsModel;
 			this.saveDataModel = saveDataModel;
-
-			settingsView.OnBackButtonClicked += BackToMenu;
-			settingsView.OnApplyButtonClicked += ApplySettings;
-			settingsView.OnResolutionScaleChanged += ChangeResolutionScale;
-			settingsView.OnSFXVolumeChanged += ChangeSFXVolume;
-			settingsView.OnMusicVolumeChanged += ChangeMusicVolume;
 		}
 
-		private void BackToMenu()
+		public void BackToMenu()
 		{
 			menuPresenter.Run();
 		}
 
-		private void ApplySettings()
+		public void ApplySettings()
         {
 			gameSettingsModel.ApplySettings();
 			saveDataModel.SaveData(gameSettingsModel.Settings);
         }
 
-		private void ChangeResolutionScale(float scale)
+		public void ChangeResolutionScale(float scale)
 		{
 			gameSettingsModel.ChangeResolutionScale(scale);
 		}
 
-		private void ChangeSFXVolume(bool isOn)
+		public void ChangeSFXVolume(bool isOn)
 		{
 			gameSettingsModel.ChangeSFXVolume(isOn);
 		}
 
-		private void ChangeMusicVolume(bool isOn)
+		public void ChangeMusicVolume(bool isOn)
 		{
 			gameSettingsModel.ChangeMusicVolume(isOn);
 		}

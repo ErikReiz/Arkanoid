@@ -1,13 +1,15 @@
 using Arkanoid.Interfaces;
+using Arkanoid.UI.Presenter;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Arkanoid.UI.View
 {
-	public class PauseMenuView : MonoBehaviour, IPauseMenuView
+	public class PauseMenuView : MonoBehaviour, IView
 	{
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private Canvas canvas;
@@ -22,8 +24,7 @@ namespace Arkanoid.UI.View
 		#endregion
 
 		#region FIELDS
-		public event UnityAction OnPlayButtonClicked;
-		public event UnityAction OnQuitButtonClicked;
+		[Inject] private PauseMenuPresenter menuPresenter;
 		#endregion
 
 		private void OnEnable()
@@ -42,14 +43,14 @@ namespace Arkanoid.UI.View
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
-			OnPlayButtonClicked.Invoke();
+			menuPresenter.Play();
 		}
 
 		private async void OnQuitClicked()
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
-			OnQuitButtonClicked.Invoke();
+			menuPresenter.Quit();
 		}
 
 		public Task Show()
