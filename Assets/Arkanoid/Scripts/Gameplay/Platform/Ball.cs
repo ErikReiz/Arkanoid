@@ -1,5 +1,6 @@
 using Arkanoid.Managers;
 using Arkanoid.Models;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,9 @@ namespace Arkanoid.Gameplay.Platform
 
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private float speed = 5f;
+		[SerializeField] private float maxSpeed = 8f;
+		[SerializeField] private float increaseFactor = 0.5f;
+		[SerializeField] private float increaseDelay = 4f;
 		#endregion
 
 		#region FIELDS
@@ -26,6 +30,7 @@ namespace Arkanoid.Gameplay.Platform
 		private void Start()
 		{
 			SetStartDirection();
+			StartCoroutine(IncreaseSpeedCoorutine());
 		}
 
 		private void SetStartDirection()
@@ -35,6 +40,15 @@ namespace Arkanoid.Gameplay.Platform
 				xDirection *= -1;
 
 			movementDirection = new(xDirection, 1);
+		}
+
+		private IEnumerator IncreaseSpeedCoorutine()
+		{
+			while(speed < maxSpeed)
+			{
+				speed = Mathf.Clamp(speed + increaseFactor, speed, maxSpeed);
+				yield return new WaitForSeconds(increaseDelay);
+			}
 		}
 
 		private void FixedUpdate()

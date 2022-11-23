@@ -1,6 +1,7 @@
 using Arkanoid.Gameplay.Bonuses;
 using Arkanoid.Interfaces;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Arkanoid.Gameplay.Platform
@@ -8,6 +9,7 @@ namespace Arkanoid.Gameplay.Platform
 	public class Player : MonoBehaviour, IBonusVisitor
 	{
 		#region FIELDS
+		private List<BaseBonus> activeBonuses;
 		private Camera mainCamera;
 		private BoxCollider2D collider;
 		private SpriteRenderer spriteRenderer;
@@ -22,7 +24,6 @@ namespace Arkanoid.Gameplay.Platform
 			playerMovement = GetComponent<PlayerMovement>();
 
 			StartCoroutine(Test());
-			//StartCoroutine(Test());
 
 			CalculateBorders();
 		}

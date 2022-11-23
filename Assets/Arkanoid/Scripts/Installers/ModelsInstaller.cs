@@ -16,8 +16,6 @@ namespace Arkanoid.Installers
         [SerializeField] private AudioMixer audioMixer;
         #endregion
 
-        [Inject] DataConfig test;
-
         public override void InstallBindings()
         {
             #region MODELS
@@ -30,20 +28,15 @@ namespace Arkanoid.Installers
 
 			#region CONFIGS
 			Container.Bind<InGameConfig>().FromScriptableObject(config).AsSingle();
-            ConfigManager.FetchCompleted += t =>
-            {
-                Container.Bind<DataConfig>().FromNew().AsSingle().NonLazy();
-            }; 
+            //ConfigManager.FetchCompleted += t =>
+           // {
+            //    Container.Bind<DataConfig>().FromNew().AsSingle().NonLazy();
+            //}; 
             #endregion
 
             #region OTHER
             Container.Bind<AudioMixer>().FromInstance(audioMixer).AsSingle();
             #endregion
-        }
-
-        private void Awake()
-        {
-            test.ToString();
         }
     }
 }

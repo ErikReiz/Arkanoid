@@ -34,7 +34,11 @@ namespace Arkanoid.Models
 			{
 				return LoadMainMenu();
 			}
+		}
 
+		public AsyncOperation ReloadScene()
+		{
+			return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }

@@ -1,35 +1,41 @@
+using Arkanoid.Data;
 using Arkanoid.Gameplay.Bonuses;
 using Arkanoid.Interfaces;
+using Arkanoid.Models;
 using UnityEngine;
+using Zenject;
 
 namespace Arkanoid.Patterns.Factories
 {
-	public class BonusFactory
+	public class BonusFactory : IBonusFactory
 	{
 		#region FIELDS
-		private System.Action<GameObject>[] bonusSpawnFunc;
+		private System.Func<BaseBonus>[] bonusCreateFunc;
 		private IBonusVisitor bonusVisitor;
+		private PauseModel pauseModel;
+		private InGameConfig config;
 		#endregion
 
-		public BonusFactory(IBonusVisitor bonusVisitor)
+		public BonusFactory(IBonusVisitor bonusVisitor, PauseModel pauseModel, InGameConfig config)
 		{
 			this.bonusVisitor = bonusVisitor;
-
-			bonusSpawnFunc = new System.Action<GameObject>[] { PlatformSizeBonus };
+			this.pauseModel = pauseModel;
+			this.config = config;
+			bonusCreateFunc = new System.Func<BaseBonus>[] { PlatformSizeBonus };
 		}
 
-		public void GenerateBonus(Vector3 spawnPosition)
+		public void Create(Vector3 spawnPosition)
 		{
-			GameObject bonusObject = new GameObject("Bonus");
-			bonusObject.transform.position = spawnPosition;
+			BonusCarrier bonusObject = GameObject.Instantiate<BonusCarrier>(config.BonusCarrier, spawnPosition, Quaternion.identity);
 
-			int randomIndex = Random.Range(0, bonusSpawnFunc.Length);
-			bonusSpawnFunc[randomIndex].Invoke(bonusObject);
+			int randomIndex = Random.Range(0, bonusCreateFunc.Length);
+			BaseBonus bonus = bonusCreateFunc[randomIndex].Invoke();
+			bonusObject.Initialize(pauseModel, config, bonus);
 		}
 
-		private void PlatformSizeBonus(GameObject bonusObject)
+		private BaseBonus PlatformSizeBonus()
 		{
-			bonusObject.AddComponent<PlatformSizeBonus>();
+			return new PlatformSizeBonus(bonusVisitor);
 		}
 	}
 }

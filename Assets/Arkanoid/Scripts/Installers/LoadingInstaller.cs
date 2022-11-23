@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Arkanoid.Installers
 {
-    public class FactoriesInstaller : MonoInstaller
+    public class LoadingInstaller : MonoInstaller
     {
         #region SERIALIZABLE FIELDS
         [SerializeField] private LoadingView loadingView;
@@ -20,8 +20,6 @@ namespace Arkanoid.Installers
             Container.Bind<LoadPresenter>().ToSelf().AsSingle();
             Container.Bind<ILoadingScreenFactory>().To<LoadingScreenFactory>().AsSingle();
 			#endregion
-
-			Container.Bind<BonusFactory>().ToSelf().AsSingle();
         }
 	}
 }

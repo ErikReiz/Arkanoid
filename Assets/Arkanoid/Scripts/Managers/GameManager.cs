@@ -1,8 +1,13 @@
+using Arkanoid.UI.Presenter;
+using Zenject;
+
 namespace Arkanoid.Managers
 {
 	public class GameManager
 	{
 		#region FIELDS
+		[Inject] private LoadPresenter loadPresenter;
+
 		private int ballsCount = 1;
 		#endregion
 
@@ -17,7 +22,7 @@ namespace Arkanoid.Managers
 		private void EndGame()
 		{
 			ballsCount = 1;
-			UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+			loadPresenter.ReloadScene();
 		}
 	}
 }

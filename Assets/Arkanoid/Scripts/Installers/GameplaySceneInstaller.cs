@@ -1,5 +1,6 @@
 using Arkanoid.Gameplay.Platform;
 using Arkanoid.Interfaces;
+using Arkanoid.Patterns.Factories;
 using Arkanoid.UI.Presenter;
 using Arkanoid.UI.View;
 using UnityEngine;
@@ -32,6 +33,10 @@ namespace Arkanoid.Installers
 
 			#region GAMEPLAY
 			Container.Bind<IBonusVisitor>().FromInstance(player).AsSingle();
+			#endregion
+
+			#region FACTORIES
+			Container.Bind<IBonusFactory>().To<BonusFactory>().AsSingle();
 			#endregion
 		}
 
