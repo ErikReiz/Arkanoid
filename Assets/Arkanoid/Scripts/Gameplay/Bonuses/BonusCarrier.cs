@@ -11,7 +11,7 @@ namespace Arkanoid.Gameplay.Bonuses
 		private InGameConfig config;
 		private BaseBonus bonus;
 
-		private float speed = 5f; // TODO заменить
+		private float speed = 3f; // TODO заменить
 		#endregion
 
 		private void FixedUpdate()

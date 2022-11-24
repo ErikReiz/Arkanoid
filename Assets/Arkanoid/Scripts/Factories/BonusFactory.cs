@@ -3,7 +3,6 @@ using Arkanoid.Gameplay.Bonuses;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
 using UnityEngine;
-using Zenject;
 
 namespace Arkanoid.Patterns.Factories
 {
@@ -21,21 +20,27 @@ namespace Arkanoid.Patterns.Factories
 			this.bonusVisitor = bonusVisitor;
 			this.pauseModel = pauseModel;
 			this.config = config;
-			bonusCreateFunc = new System.Func<BaseBonus>[] { PlatformSizeBonus };
-		}
 
-		public void Create(Vector3 spawnPosition)
-		{
-			BonusCarrier bonusObject = GameObject.Instantiate<BonusCarrier>(config.BonusCarrier, spawnPosition, Quaternion.identity);
-
-			int randomIndex = Random.Range(0, bonusCreateFunc.Length);
-			BaseBonus bonus = bonusCreateFunc[randomIndex].Invoke();
-			bonusObject.Initialize(pauseModel, config, bonus);
+			bonusCreateFunc = new System.Func<BaseBonus>[] { PlatformSizeBonus, BallCountBonus };
 		}
 
 		private BaseBonus PlatformSizeBonus()
 		{
 			return new PlatformSizeBonus(bonusVisitor);
+		}
+
+		private BaseBonus BallCountBonus()
+		{
+			return new BallCountBonus(bonusVisitor);
+		}
+
+		public void Create(Vector3 spawnPosition)
+		{
+			BonusCarrier bonusObject = GameObject.Instantiate<BonusCarrier>(config.BonusCarrierPrefab, spawnPosition, Quaternion.identity);
+
+			int randomIndex = Random.Range(0, bonusCreateFunc.Length);
+			BaseBonus bonus = bonusCreateFunc[randomIndex].Invoke();
+			bonusObject.Initialize(pauseModel, config, bonus);
 		}
 	}
 }

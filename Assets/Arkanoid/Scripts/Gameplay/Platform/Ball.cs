@@ -6,14 +6,19 @@ using Zenject;
 
 namespace Arkanoid.Gameplay.Platform
 {
+	[RequireComponent(typeof(Rigidbody2D))]
 	public class Ball : MonoBehaviour
 	{
 		#region CONST
 		private readonly float minimalDirection = 0.1f;
 		private readonly float directionRange = 0.4f;
+		private readonly float minCosValue = 0.95f;
+		private readonly Vector2 cosDivisionRange = new Vector2(1.5f, 2f);
 		#endregion
 
 		#region SERIALIZABLE FIELDS
+		[SerializeField] private Rigidbody2D rigidbody;
+
 		[SerializeField] private float speed = 5f;
 		[SerializeField] private float maxSpeed = 8f;
 		[SerializeField] private float increaseFactor = 0.5f;
@@ -24,13 +29,14 @@ namespace Arkanoid.Gameplay.Platform
 		[Inject] private GameManager gameManager;
 		[Inject] private PauseModel pauseModel;
 
+		private bool isQutting = false;
 		private Vector3 movementDirection;
 		#endregion
 
 		private void Start()
 		{
 			SetStartDirection();
-			StartCoroutine(IncreaseSpeedCoorutine());
+			StartCoroutine(IncreaseSpeedCoroutine());
 		}
 
 		private void SetStartDirection()
@@ -42,7 +48,7 @@ namespace Arkanoid.Gameplay.Platform
 			movementDirection = new(xDirection, 1);
 		}
 
-		private IEnumerator IncreaseSpeedCoorutine()
+		private IEnumerator IncreaseSpeedCoroutine()
 		{
 			while(speed < maxSpeed)
 			{
@@ -56,17 +62,39 @@ namespace Arkanoid.Gameplay.Platform
 			if (pauseModel.IsPaused)
 				return;
 
-			transform.position += movementDirection * speed * Time.fixedDeltaTime;
+			rigidbody.MovePosition(transform.position + movementDirection * speed * Time.fixedDeltaTime);
 		}
 
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
-			movementDirection = Vector3.Reflect(movementDirection, collision.contacts[0].normal);
+			movementDirection = Vector2.Reflect(movementDirection, collision.contacts[0].normal);
+			//ReflectDirection(collision.contacts[0].normal);
+		}
+
+		private void ReflectDirection(Vector3 normalVector)
+		{
+			float xDotProduct;
+			float dotProduct = -2 * Vector2.Dot(normalVector, movementDirection);
+			Debug.Log(dotProduct);
+			float movementDirectionCos = Mathf.Abs(dotProduct);
+			if (movementDirectionCos >= minCosValue)
+				xDotProduct = dotProduct / Random.Range(cosDivisionRange.x, cosDivisionRange.y);
+			else
+				xDotProduct = dotProduct;
+
+			movementDirection = new Vector3(xDotProduct * normalVector.x + movementDirection.x, dotProduct * normalVector.y + movementDirection.y);
+
+		}
+
+		private void OnApplicationQuit()
+		{
+			isQutting = true;
 		}
 
 		private void OnDestroy()
 		{
-			gameManager.OnBallDestroyed();
+			if(!isQutting)
+				gameManager.OnBallDestroyed();
 		}
 	}
 }

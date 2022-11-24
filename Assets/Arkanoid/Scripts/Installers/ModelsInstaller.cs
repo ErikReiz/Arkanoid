@@ -1,7 +1,7 @@
 using Arkanoid.Data;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
-using Unity.RemoteConfig;
+using Arkanoid.Patterns.Factories;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -24,6 +24,10 @@ namespace Arkanoid.Installers
             Container.Bind<SaveDataModel>().ToSelf().AsSingle();
             Container.Bind<SceneLoaderModel>().ToSelf().AsSingle();
             Container.Bind<ISerializationHelper>().To<XMLSerializationHelper>().AsSingle();
+            #endregion
+
+            #region FACTORIES
+            Container.Bind<IBallFactory>().To<BallFactory>().AsSingle();
 			#endregion
 
 			#region CONFIGS

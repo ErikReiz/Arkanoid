@@ -1,4 +1,8 @@
+using Arkanoid.Data;
+using Arkanoid.Gameplay.Platform;
+using Arkanoid.Interfaces;
 using Arkanoid.UI.Presenter;
+using UnityEngine;
 using Zenject;
 
 namespace Arkanoid.Managers
@@ -7,10 +11,17 @@ namespace Arkanoid.Managers
 	{
 		#region FIELDS
 		[Inject] private LoadPresenter loadPresenter;
+		[Inject] private IBallFactory ballFactory;
 
 		private int ballsCount = 1;
 		#endregion
 
+		private void EndGame()
+		{
+			ballsCount = 1;
+			loadPresenter.ReloadScene();
+		}
+		
 		public void OnBallDestroyed()
 		{
 			ballsCount--;
@@ -19,10 +30,10 @@ namespace Arkanoid.Managers
 				EndGame();
 		}
 
-		private void EndGame()
+		public void IncreaseBallCount(int increaseCount)
 		{
-			ballsCount = 1;
-			loadPresenter.ReloadScene();
+			ballsCount += increaseCount;
+			ballFactory.Create(increaseCount);
 		}
 	}
 }

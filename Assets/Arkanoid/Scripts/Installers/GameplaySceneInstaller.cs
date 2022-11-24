@@ -33,10 +33,12 @@ namespace Arkanoid.Installers
 
 			#region GAMEPLAY
 			Container.Bind<IBonusVisitor>().FromInstance(player).AsSingle();
+			Container.Rebind<Player>().FromInstance(player).AsSingle();
 			#endregion
 
 			#region FACTORIES
 			Container.Bind<IBonusFactory>().To<BonusFactory>().AsSingle();
+			Container.Resolve<IBallFactory>().BindPlayer(player);
 			#endregion
 		}
 

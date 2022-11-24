@@ -1,4 +1,5 @@
 using Arkanoid.Gameplay.Bonuses;
+using Arkanoid.Gameplay.Platform;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,10 @@ namespace Arkanoid.Data
 	{
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private LayerMask playerLayer;
-		[SerializeField] private BonusCarrier bonusCarrier;
+
+		[Header("Prefabs")]
+		[SerializeField] private BonusCarrier bonusCarrierPrefab;
+		[SerializeField] private Ball ballPrefab;
 
 		[Header("Scenes")]
 		[SerializeField] private int mainMenuIndex;
@@ -19,7 +23,8 @@ namespace Arkanoid.Data
 
 		#region PROPERTIES
 		public LayerMask PlayerLayer { get { return playerLayer; } }
-		public BonusCarrier BonusCarrier { get { return bonusCarrier; } }
+		public BonusCarrier BonusCarrierPrefab { get { return bonusCarrierPrefab; } }
+		public Ball BallPrefab { get { return ballPrefab; } }
 		public int MainMenu { get { return mainMenuIndex; } }
 		public int GameplayScenesCount { get { return gameplayScenesRange.y - gameplayScenesRange.x + 1; } }
 		#endregion

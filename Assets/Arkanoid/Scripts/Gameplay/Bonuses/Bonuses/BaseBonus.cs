@@ -1,8 +1,4 @@
-using Arkanoid.Data;
 using Arkanoid.Interfaces;
-using Arkanoid.Models;
-using UnityEngine;
-using Zenject;
 
 namespace Arkanoid.Gameplay.Bonuses
 {
