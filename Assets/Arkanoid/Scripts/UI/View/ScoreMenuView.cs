@@ -3,19 +3,20 @@ using Arkanoid.UI.Presenter;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
+using TMPro;
 
 namespace Arkanoid.UI.View
 {
-	public class PauseMenuView : MonoBehaviour, IView
+	public class ScoreMenuView : MonoBehaviour, IScoreMenuView
 	{
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private Canvas canvas;
+		[SerializeField] private TMP_Text scoreText;
 
 		[Header("Buttons")]
-		[SerializeField] private Button playButton;
+		[SerializeField] private Button nextSceneButton;
 		[SerializeField] private Button quitButton;
 
 		[Header("DotWeen")]
@@ -29,24 +30,24 @@ namespace Arkanoid.UI.View
 
 		private void OnEnable()
 		{
-			playButton.onClick.AddListener(OnPlayClicked);
-			quitButton.onClick.AddListener(OnQuitClicked);
+			nextSceneButton.onClick.AddListener(OnNextLevelClicked);
+			quitButton.onClick.AddListener(OnQuitToMenuClicked);
 		}
 
 		private void OnDisable()
 		{
-			playButton.onClick.RemoveListener(OnPlayClicked);
-			quitButton.onClick.RemoveListener(OnQuitClicked);
+			nextSceneButton.onClick.RemoveListener(OnNextLevelClicked);
+			quitButton.onClick.RemoveListener(OnQuitToMenuClicked);
 		}
 
-		private async void OnPlayClicked()
+		private async void OnNextLevelClicked()
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
-			menuPresenter.Play();
+			menuPresenter.LoadNextLevel();
 		}
 
-		private async void OnQuitClicked()
+		private async void OnQuitToMenuClicked()
 		{
 			await Hide();
 			canvas.gameObject.SetActive(false);
@@ -62,6 +63,11 @@ namespace Arkanoid.UI.View
 		public Task Hide()
 		{
 			return transform.DOLocalMoveX(hideDeltaChange, tweeningLength).AsyncWaitForCompletion();
+		}
+
+		public void UpdateScore(int score)
+		{
+			scoreText.SetText($"Score {score}");
 		}
 	}
 }

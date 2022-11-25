@@ -1,5 +1,6 @@
 using Arkanoid.Data;
 using Arkanoid.Interfaces;
+using Arkanoid.Managers;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,7 @@ namespace Arkanoid.Gameplay.Tiles
 
 		#region FIELDS
 		[Inject] private IBonusFactory bonusFactory;
+		[Inject] private GameManager gameManager;
 
 		private int tileHealth;
 		#endregion
@@ -25,6 +27,11 @@ namespace Arkanoid.Gameplay.Tiles
 			renderer.color = tileData.TileColor;
 
 			tileHealth = tileData.TileHealth;
+		}
+
+		private void Start()
+		{
+			gameManager.IncreaseTileCount();
 		}
 
 		private void OnCollisionEnter2D(Collision2D collision)
@@ -39,6 +46,7 @@ namespace Arkanoid.Gameplay.Tiles
 			if (Random.Range(0, 100) <= tileData.BonusSpawnChance)
 				bonusFactory.Create(transform.position);
 
+			gameManager.OnTileDestroyed(tileData.Score);
 			Destroy(gameObject);
 		}
 	}

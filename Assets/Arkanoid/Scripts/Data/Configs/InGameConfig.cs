@@ -31,6 +31,9 @@ namespace Arkanoid.Data
 
 		public int GetGameplaySceneIndex(int index)
 		{
+			if (index > gameplayScenesRange.y)
+				return mainMenuIndex;
+
 			return index % gameplayScenesRange.y + gameplayScenesRange.x;
 		}
 	}

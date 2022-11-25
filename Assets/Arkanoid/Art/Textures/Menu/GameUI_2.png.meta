@@ -305,6 +305,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PauseIcon
+      rect:
+        serializedVersion: 2
+        x: 3146
+        y: 510
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3603cd9bfc3eb294ab03af0de55ccc41
+      internalID: -1345106508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -324,6 +345,7 @@ TextureImporter:
       MusicIcon: 381220415
       Button_2: 1403464074
       SFXMuted: -1032837347
+      PauseIcon: -1345106508
       CrossIcon: 85392776
   spritePackingTag: 
   pSDRemoveMatte: 0

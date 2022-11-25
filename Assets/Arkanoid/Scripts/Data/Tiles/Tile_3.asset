@@ -15,4 +15,5 @@ MonoBehaviour:
   tileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   tileColor: {r: 1, g: 0.7328316, b: 0, a: 1}
   tileHealth: 5
+  score: 500
   bonusSpawnChance: 50

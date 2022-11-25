@@ -12,12 +12,11 @@ namespace Arkanoid.Gameplay.Platform
 		#region CONST
 		private readonly float minimalDirection = 0.1f;
 		private readonly float directionRange = 0.4f;
-		private readonly float minCosValue = 0.95f;
-		private readonly Vector2 cosDivisionRange = new Vector2(1.5f, 2f);
 		#endregion
 
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private Rigidbody2D rigidbody;
+		[SerializeField] private AnimationCurve bounceDotProductCurve;
 
 		[SerializeField] private float speed = 5f;
 		[SerializeField] private float maxSpeed = 8f;
@@ -42,10 +41,10 @@ namespace Arkanoid.Gameplay.Platform
 		private void SetStartDirection()
 		{
 			float xDirection = Random.Range(minimalDirection, directionRange);
-			if (Random.Range(0, 1) == 0)
+			if (Random.Range(0, 2) == 0)
 				xDirection *= -1;
 
-			movementDirection = new(xDirection, 1);
+			movementDirection = new Vector3(xDirection, 1).normalized;
 		}
 
 		private IEnumerator IncreaseSpeedCoroutine()
@@ -67,23 +66,17 @@ namespace Arkanoid.Gameplay.Platform
 
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
-			movementDirection = Vector2.Reflect(movementDirection, collision.contacts[0].normal);
-			//ReflectDirection(collision.contacts[0].normal);
+			ReflectDirection(collision.contacts[0].normal);
 		}
 
 		private void ReflectDirection(Vector3 normalVector)
 		{
-			float xDotProduct;
-			float dotProduct = -2 * Vector2.Dot(normalVector, movementDirection);
-			Debug.Log(dotProduct);
-			float movementDirectionCos = Mathf.Abs(dotProduct);
-			if (movementDirectionCos >= minCosValue)
-				xDotProduct = dotProduct / Random.Range(cosDivisionRange.x, cosDivisionRange.y);
-			else
-				xDotProduct = dotProduct;
+			float dotProduct = Vector2.Dot(normalVector, movementDirection);
+			float dotProdutctMultiplier = bounceDotProductCurve.Evaluate(Mathf.Abs(dotProduct));
 
-			movementDirection = new Vector3(xDotProduct * normalVector.x + movementDirection.x, dotProduct * normalVector.y + movementDirection.y);
+			dotProduct *= -dotProdutctMultiplier;
 
+			movementDirection = new Vector3(dotProduct * normalVector.x + movementDirection.x, dotProduct * normalVector.y + movementDirection.y).normalized;
 		}
 
 		private void OnApplicationQuit()

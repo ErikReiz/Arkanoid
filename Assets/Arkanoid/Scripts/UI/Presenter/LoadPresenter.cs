@@ -45,6 +45,12 @@ namespace Arkanoid.UI.Presenter
 				Loading(() => sceneLoaderModel.LoadScene(sceneIndex));
 		}
 
+		public void LoadNextScene()
+		{
+			if (loadSceneOperation?.isDone ?? true)
+				Loading(sceneLoaderModel.LoadNextScene);
+		}
+
 		public void ReloadScene()
 		{
 			if (loadSceneOperation?.isDone ?? true)

@@ -1,4 +1,5 @@
 using Arkanoid.Interfaces;
+using Arkanoid.Managers;
 using Arkanoid.Models;
 using Zenject;
 
@@ -7,9 +8,11 @@ namespace Arkanoid.UI.Presenter
 	public class PauseMenuPresenter : BasePresenter
 	{
 		#region FIELDS
+		[Inject] private GameManager gameManager;
 		[Inject] private HudPresenter hudPresenter;
 		[Inject] private LoadPresenter loadScenePresenter;
 		[Inject] private IView menuView;
+		[Inject] private IScoreMenuView sceneMenuView;
 
 		private PauseModel pauseModel;
 		#endregion
@@ -25,16 +28,32 @@ namespace Arkanoid.UI.Presenter
 			hudPresenter.Run();
 		}
 
-		public void Quit()
+		public void LoadNextLevel()
+		{
+			pauseModel.PauseGame(false);
+			loadScenePresenter.LoadNextScene();
+		}
+
+		public void QuitToMainMenu()
 		{
 			pauseModel.PauseGame(false);
 			loadScenePresenter.LoadMainMenu();
 		}
 
 		public override void Run()
-		{
+		{	
 			pauseModel.PauseGame(true);
-			menuView.Show();
+
+			if (gameManager.IsGameEnded)
+			{
+				sceneMenuView.Show();
+				sceneMenuView.UpdateScore(gameManager.Score);
+			}
+			else
+			{
+				menuView.Show();
+			}
+
 		}
 	}
 }

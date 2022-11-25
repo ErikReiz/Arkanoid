@@ -9,6 +9,7 @@ namespace Arkanoid.Data
 		[SerializeField] private Sprite tileSprite;
 		[SerializeField] private Color tileColor;
 		[SerializeField] private int tileHealth;
+		[SerializeField] private int score;
 		[SerializeField] private float bonusSpawnChance;
 		#endregion
 
@@ -16,6 +17,7 @@ namespace Arkanoid.Data
 		public Sprite TileSprite { get { return tileSprite; } }
 		public Color TileColor { get { return tileColor; } }
 		public int TileHealth { get { return tileHealth; } }
+		public int Score { get { return score; } }
 		public float BonusSpawnChance { get { return bonusSpawnChance; } }
 		#endregion
 	}

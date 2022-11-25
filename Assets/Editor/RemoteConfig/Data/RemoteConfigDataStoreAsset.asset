@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"7f4c70cc-1fc5-49d9-9411-7a821a47ea05\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"043502c8-2dc9-4116-a561-830449ff3500\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Game settings\",\r\n      \"type\": \"json\",\r\n     
     \"schemaId\": null,\r\n      \"value\": {\r\n        \"bonusFallSpeed\": 5,\r\n       
     \"sizeBonusMultiplier\": 0\r\n      }\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"7f4c70cc-1fc5-49d9-9411-7a821a47ea05\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"043502c8-2dc9-4116-a561-830449ff3500\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Game settings\",\r\n      \"type\": \"json\",\r\n     
     \"schemaId\": null,\r\n      \"value\": {\r\n        \"bonusFallSpeed\": 5,\r\n       
     \"sizeBonusMultiplier\": 0\r\n      }\r\n    }\r\n  }\r\n]"

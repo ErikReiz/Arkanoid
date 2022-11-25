@@ -36,6 +36,19 @@ namespace Arkanoid.Models
 			}
 		}
 
+		public AsyncOperation LoadNextScene()
+		{
+			try
+			{
+				int nextSceneIndex = config.GetGameplaySceneIndex(SceneManager.GetActiveScene().buildIndex + 1);
+				return SceneManager.LoadSceneAsync(nextSceneIndex);
+			}
+			catch
+			{
+				return LoadMainMenu();
+			}
+		}
+
 		public AsyncOperation ReloadScene()
 		{
 			return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
