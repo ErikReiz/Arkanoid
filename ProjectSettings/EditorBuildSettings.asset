@@ -6,8 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Arkanoid/Scenes/InitalizationScene.unity
+    guid: 117aa05e603cb324d85ff8513260d2a6
+  - enabled: 1
     path: Assets/Arkanoid/Scenes/MainMenu.unity
     guid: 24e594341c369a1449ea1bd9c40153c4
+  - enabled: 1
+    path: Assets/Arkanoid/Scenes/IntroScene.unity
+    guid: cc0436b17dd72e747bc5b488e9a757c5
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 5a9b584c8037a4e43b199dab34b57f49, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 5e098fe7f53172e4f9a51a4b7ce28fe6, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: f02c2551ee36e084a87a4d0573f007a8, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 35a7e845f1f661e48b0f09823e346125, type: 2}
