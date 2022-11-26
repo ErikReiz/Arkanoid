@@ -3,6 +3,7 @@ using Arkanoid.Gameplay.Bonuses;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
 using UnityEngine;
+using Zenject;
 
 namespace Arkanoid.Patterns.Factories
 {
@@ -11,36 +12,38 @@ namespace Arkanoid.Patterns.Factories
 		#region FIELDS
 		private System.Func<BaseBonus>[] bonusCreateFunc;
 		private IBonusVisitor bonusVisitor;
-		private PauseModel pauseModel;
 		private InGameConfig config;
+		private DiContainer diContainer;
+		private RemoteConfig remoteConfig;
 		#endregion
 
-		public BonusFactory(IBonusVisitor bonusVisitor, PauseModel pauseModel, InGameConfig config)
+		public BonusFactory(IBonusVisitor bonusVisitor, InGameConfig config, DiContainer diContainer, RemoteConfig remoteConfig)
 		{
 			this.bonusVisitor = bonusVisitor;
-			this.pauseModel = pauseModel;
 			this.config = config;
+			this.diContainer = diContainer;
+			this.remoteConfig = remoteConfig;
 
 			bonusCreateFunc = new System.Func<BaseBonus>[] { PlatformSizeBonus, BallCountBonus };
 		}
 
 		private BaseBonus PlatformSizeBonus()
 		{
-			return new PlatformSizeBonus(bonusVisitor);
+			return new PlatformSizeBonus(bonusVisitor, remoteConfig);
 		}
 
 		private BaseBonus BallCountBonus()
 		{
-			return new BallCountBonus(bonusVisitor);
+			return new BallCountBonus(bonusVisitor, remoteConfig);
 		}
 
 		public void Create(Vector3 spawnPosition)
 		{
-			BonusCarrier bonusObject = GameObject.Instantiate<BonusCarrier>(config.BonusCarrierPrefab, spawnPosition, Quaternion.identity);
+			BonusCarrier bonusObject = diContainer.InstantiatePrefabForComponent<BonusCarrier>(config.BonusCarrierPrefab, spawnPosition, Quaternion.identity, null);
 
 			int randomIndex = Random.Range(0, bonusCreateFunc.Length);
 			BaseBonus bonus = bonusCreateFunc[randomIndex].Invoke();
-			bonusObject.Initialize(pauseModel, config, bonus);
+			bonusObject.Initialize(bonus);
 		}
 	}
 }

@@ -66,7 +66,7 @@ namespace Arkanoid.Gameplay.Platform
 
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
-			ReflectDirection(collision.contacts[0].normal);
+			ReflectDirection(collision.contacts[collision.contacts.Length - 1].normal);
 		}
 
 		private void ReflectDirection(Vector3 normalVector)

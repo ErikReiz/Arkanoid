@@ -7,16 +7,14 @@ namespace Arkanoid.Gameplay.Bonuses
 	public class PlatformSizeBonus : BaseBonus, IBonusWithTimer
 	{
 		#region PROPERTIES
-		public float SizeModifier { get { return config.SizeBonusMultiplier; } }
+		public float SizeModifier { get { return remoteConfig.SizeBonusMultiplier; } }
 		#endregion
 
 		#region FIELDS
-		[Inject] private RemoteConfig config;
-
 		private float bonusTime;
 		#endregion
 
-		public PlatformSizeBonus(IBonusVisitor bonusVisitor) : base(bonusVisitor)
+		public PlatformSizeBonus(IBonusVisitor bonusVisitor, RemoteConfig config) : base(bonusVisitor, config)
 		{
 			bonusTime = config.SizeBonusTimer;
 		}
