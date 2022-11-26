@@ -1,3 +1,4 @@
+using Arkanoid.Data;
 using Arkanoid.Managers;
 using Arkanoid.Models;
 using System.Collections;
@@ -17,23 +18,22 @@ namespace Arkanoid.Gameplay.Platform
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private Rigidbody2D rigidbody;
 		[SerializeField] private AnimationCurve bounceDotProductCurve;
-
-		[SerializeField] private float speed = 5f;
-		[SerializeField] private float maxSpeed = 8f;
-		[SerializeField] private float increaseFactor = 0.5f;
-		[SerializeField] private float increaseDelay = 4f;
 		#endregion
 
 		#region FIELDS
 		[Inject] private GameManager gameManager;
 		[Inject] private PauseModel pauseModel;
+		[Inject] private RemoteConfig config;
 
 		private bool isQutting = false;
+		private float speed;
 		private Vector3 movementDirection;
 		#endregion
 
 		private void Start()
 		{
+			speed = config.BallStartSpeed;
+
 			SetStartDirection();
 			StartCoroutine(IncreaseSpeedCoroutine());
 		}
@@ -49,10 +49,10 @@ namespace Arkanoid.Gameplay.Platform
 
 		private IEnumerator IncreaseSpeedCoroutine()
 		{
-			while(speed < maxSpeed)
+			while (speed < config.BallMaxSpeed)
 			{
-				speed = Mathf.Clamp(speed + increaseFactor, speed, maxSpeed);
-				yield return new WaitForSeconds(increaseDelay);
+				speed = Mathf.Clamp(speed + config.IncreaseSpeedFactor, speed, config.BallMaxSpeed);
+				yield return new WaitForSeconds(config.IncreaseDelay);
 			}
 		}
 

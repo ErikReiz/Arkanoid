@@ -5,28 +5,52 @@ using UnityEngine;
 
 namespace Arkanoid.Data
 {
-	[CreateAssetMenu(fileName = "Remote Config")]
-	public class RemoteConfig : ScriptableObject
+	[System.Serializable]
+	public struct RemoteConfigStruct
+	{
+		public float bonusFallSpeed;
+		public float sizeBonusMultiplier;
+		public float sizeBonusTimer;
+		public int bonusBallIncrease;
+
+		public float ballStartSpeed;
+		public float ballMaxSpeed;
+		public float increaseSpeedFactor;
+		public float increaseDelay;
+	}
+
+	public class RemoteConfig
 	{
 		#region CONST
 		private readonly string gameSettings = "Game settings";
 		#endregion
 
-		#region SERIALIZABLE FIELDS
-		[SerializeField, HideInInspector] private float bonusFallSpeed;
+		#region PROPERTIES
+		public float BonusFallSpeed { get { return remoteConfigStruct.bonusFallSpeed; } }
+		public float SizeBonusMultiplier { get { return remoteConfigStruct.sizeBonusMultiplier; } }
+		public float SizeBonusTimer { get { return remoteConfigStruct.sizeBonusTimer; } }
+		public int BonusBallIncreaseSize { get { return remoteConfigStruct.bonusBallIncrease; } }
 
-		[Header("Bonuses")]
-		[SerializeField, HideInInspector] private float sizeBonusMultiplier;
+		public float BallStartSpeed { get { return remoteConfigStruct.ballStartSpeed; } }
+		public float BallMaxSpeed { get { return remoteConfigStruct.ballMaxSpeed; } }
+		public float IncreaseSpeedFactor { get { return remoteConfigStruct.increaseSpeedFactor; } }
+		public float IncreaseDelay { get { return remoteConfigStruct.increaseDelay; } }
 		#endregion
 
-		public void L()
+		#region FIELDS
+		private RemoteConfigStruct remoteConfigStruct;
+		#endregion
+
+		public RemoteConfig()
 		{
-			Debug.Log(ConfigManager.appConfig.GetJson(gameSettings));
+			InitializeConfig();
 		}
 
-		private void InitializeFields()
+		private void InitializeConfig()
 		{
-
+			string json = ConfigManager.appConfig.GetJson(gameSettings);
+			remoteConfigStruct = JsonUtility.FromJson<RemoteConfigStruct>(json);
 		}
+
 	}
 }

@@ -1,5 +1,6 @@
 using Arkanoid.Gameplay.Bonuses;
 using Arkanoid.Gameplay.Platform;
+using Unity.RemoteConfig;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,10 @@ namespace Arkanoid.Data
 	[CreateAssetMenu(fileName = "In Game Config")]
 	public class InGameConfig : ScriptableObject
 	{
+		#region CONST
+		private readonly string gameSettings = "Game settings";
+		#endregion
+
 		#region SERIALIZABLE FIELDS
 		[SerializeField] private LayerMask playerLayer;
 

@@ -1,15 +1,17 @@
+using Arkanoid.Data;
 using Arkanoid.Interfaces;
+using Zenject;
 
 namespace Arkanoid.Gameplay.Bonuses
 {
 	public class BallCountBonus : BaseBonus
 	{
 		#region PROPERTIES
-		public int BallIncrease { get { return ballIncrease; } }
+		public int BallIncrease { get { return config.BonusBallIncreaseSize; } }
 		#endregion
 
 		#region FIELDS
-		private int ballIncrease = 1; //TODO переместить в конфиг
+		[Inject] private RemoteConfig config;
 		#endregion
 
 		public BallCountBonus(IBonusVisitor bonusVisitor) : base(bonusVisitor) { }

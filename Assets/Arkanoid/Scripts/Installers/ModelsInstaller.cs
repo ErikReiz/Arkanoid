@@ -2,6 +2,7 @@ using Arkanoid.Data;
 using Arkanoid.Interfaces;
 using Arkanoid.Models;
 using Arkanoid.Patterns.Factories;
+using Unity.RemoteConfig;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -32,10 +33,11 @@ namespace Arkanoid.Installers
 
 			#region CONFIGS
 			Container.Bind<InGameConfig>().FromScriptableObject(config).AsSingle();
-            //ConfigManager.FetchCompleted += t =>
-           // {
-            //    Container.Bind<DataConfig>().FromNew().AsSingle().NonLazy();
-            //}; 
+
+            ConfigManager.FetchCompleted += t =>
+            {
+                Container.Bind<RemoteConfig>().FromNew().AsSingle();
+            }; 
             #endregion
 
             #region OTHER
