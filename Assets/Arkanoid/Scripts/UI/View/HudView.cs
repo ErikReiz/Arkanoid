@@ -1,20 +1,23 @@
 using Arkanoid.Interfaces;
+using Arkanoid.UI.Presenter;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Arkanoid.UI.View
 {
 	public class HudView : MonoBehaviour, IHudView
 	{
 		#region SERIALIZABLE FIELDS
+		[SerializeField] private Canvas canvas;
+
 		[Header("Buttons")]
 		[SerializeField] private Button pauseButton;
 		#endregion
 
 		#region FIELDS
-		public event UnityAction OnPauseButtonClicked;
+		[Inject] private HudPresenter hudPresenter;
 		#endregion
 
 		private void OnEnable()
@@ -29,18 +32,25 @@ namespace Arkanoid.UI.View
 
 		private void PauseButtonClicked()
 		{
-			OnPauseButtonClicked.Invoke();
+			Hide();
+			hudPresenter.PauseGame();
+		}
+
+		private void OnApplicationPause(bool pause)
+		{
+			if(pause)
+				PauseButtonClicked();
 		}
 
 		public Task Show()
 		{
-			Debug.Log("showed");
+			canvas.gameObject.SetActive(true);
 			return null;
 		}
 
 		public Task Hide()
 		{
-			Debug.Log("hided");
+			canvas.gameObject.SetActive(false);
 			return null;
 		}
 	}

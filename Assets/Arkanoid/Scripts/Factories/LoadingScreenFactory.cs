@@ -1,4 +1,5 @@
 using Arkanoid.Interfaces;
+using Arkanoid.UI.Presenter;
 using Arkanoid.UI.View;
 using UnityEngine;
 
@@ -16,9 +17,10 @@ namespace Arkanoid.Patterns.Factories
 			this.loadingView = loadingView;
 		}
 
-		public ILoadingView Create()
+		public ILoadingView Create(LoadPresenter loadPresenter)
 		{
 			view = GameObject.Instantiate<LoadingView>(loadingView);
+			view.Initialize(loadPresenter);
 			return view;
 		}
 

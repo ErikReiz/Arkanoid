@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Arkanoid.Models
 {
 	public class PauseModel

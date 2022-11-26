@@ -17,13 +17,13 @@ namespace Arkanoid.Installers
 		public override void InstallBindings()
 		{
 			#region VIEW
-			Container.Bind<IMenuView>().FromInstance(mainMenuView).AsSingle();
+			Container.Bind<IView>().FromInstance(mainMenuView).AsSingle();
 			Container.Bind<ISettingsView>().FromInstance(settingsView).AsSingle();
 			Container.Bind<IScenesMenuView>().FromInstance(scenesMenuView).AsSingle();
 			#endregion
 
 			#region PRESENTERS
-			Container.Bind<MenuPresenter>().ToSelf().AsSingle().NonLazy();
+			Container.Bind<MainMenuPresenter>().ToSelf().AsSingle().NonLazy();
 			Container.Bind<SettingsPresenter>().ToSelf().AsSingle().NonLazy();
 			Container.Bind<ScenesMenuPresenter>().ToSelf().AsSingle().NonLazy();
 			#endregion
@@ -32,7 +32,7 @@ namespace Arkanoid.Installers
 		private void Awake()
 		{
 			base.Start();
-			Container.Resolve<MenuPresenter>().Run();
+			Container.Resolve<MainMenuPresenter>().Run();
 		}
 	}
 }
