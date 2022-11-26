@@ -1,17 +1,20 @@
 using Arkanoid.Data;
 using Arkanoid.Models;
 using UnityEngine;
+using Zenject;
 
 namespace Arkanoid.Gameplay.Bonuses
 {
     public class BonusCarrier : MonoBehaviour
     {
-		#region FIELDS
-		private PauseModel pauseModel;
-		private InGameConfig config;
-		private BaseBonus bonus;
+		#region SERIALIZABLE FIELDS
+		[SerializeField] private float speed = 3f;
+		#endregion
 
-		private float speed = 3f; // TODO заменить
+		#region FIELDS
+		[Inject] private PauseModel pauseModel;
+		[Inject] private InGameConfig config;
+		private BaseBonus bonus;
 		#endregion
 
 		private void FixedUpdate()
@@ -33,10 +36,8 @@ namespace Arkanoid.Gameplay.Bonuses
 			}
 		}
 
-		public void Initialize(PauseModel pauseModel, InGameConfig config, BaseBonus bonus)
+		public void Initialize(BaseBonus bonus)
 		{
-			this.pauseModel = pauseModel;
-			this.config = config;
 			this.bonus = bonus;
 		}
 	}
