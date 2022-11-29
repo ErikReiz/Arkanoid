@@ -16,4 +16,4 @@ MonoBehaviour:
   tileColor: {r: 0.5611061, g: 1, b: 0, a: 1}
   tileHealth: 1
   score: 100
-  bonusSpawnChance: 100
+  bonusSpawnChance: 20
